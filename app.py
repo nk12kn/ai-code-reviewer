@@ -47,6 +47,25 @@ async def serve_index():
     return HTMLResponse("<h1>AI Code Reviewer & Security Auditor API is Running</h1>")
 
 
+@app.get("/robots.txt", response_class=PlainTextResponse)
+async def serve_robots():
+    robots_file = os.path.join(STATIC_DIR, "robots.txt")
+    if os.path.exists(robots_file):
+        with open(robots_file, "r", encoding="utf-8") as f:
+            return PlainTextResponse(f.read())
+    return PlainTextResponse("User-agent: *\nAllow: /")
+
+
+@app.get("/sitemap.xml", response_class=PlainTextResponse)
+async def serve_sitemap():
+    sitemap_file = os.path.join(STATIC_DIR, "sitemap.xml")
+    if os.path.exists(sitemap_file):
+        with open(sitemap_file, "r", encoding="utf-8") as f:
+            return PlainTextResponse(f.read(), media_type="application/xml")
+    return PlainTextResponse("", media_type="application/xml")
+
+
+
 @app.get("/api/health")
 async def health_check():
     return {
