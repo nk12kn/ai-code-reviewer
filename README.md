@@ -7,6 +7,8 @@ A full-stack, developer-first **AI Code Reviewer & Security Auditor** that autom
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-teal.svg)
 ![Security](https://img.shields.io/badge/OWASP-Top%2010-red.svg)
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nk12kn/ai-code-reviewer)
+
 ---
 
 ## 🚀 Key Features
@@ -55,6 +57,27 @@ ai-code-reviewer/
     ├── vulnerable_node.js     # Sample Node.js: Command Injection, MD5, JWT secrets
     └── vulnerable_auth.java   # Sample Java: Hardcoded DB credentials & raw queries
 ```
+
+## 🌐 Permanent Cloud Deployment (24/7 Uptime)
+
+This repository includes turnkey configuration files (`render.yaml`, `Dockerfile`, `Procfile`) for 1-click cloud hosting that runs 24/7 without needing your local computer on:
+
+### Option 1: Deploy on Render.com (Recommended — 100% Free)
+1. Fork or push this repository to your GitHub account: `https://github.com/nk12kn/ai-code-reviewer`.
+2. Visit **[Render.com](https://dashboard.render.com/)** and sign in with GitHub.
+3. Click **New +** -> **Blueprint** (or **Web Service**).
+4. Select `ai-code-reviewer`. Render reads `render.yaml` automatically.
+5. Click **Apply**. Your app will be live at `https://ai-code-reviewer-xxxx.onrender.com` with free SSL and automatic redeployment on every commit!
+
+### Option 2: Deploy on Railway.app
+1. Go to **[Railway.app](https://railway.app/)** and click **New Project**.
+2. Select **Deploy from GitHub repo** and pick `ai-code-reviewer`.
+3. Railway detects the `Dockerfile` or `Procfile` and assigns a permanent public HTTPS URL.
+
+### Option 3: Deploy on Koyeb
+1. Sign up at **[Koyeb.com](https://app.koyeb.com/)**.
+2. Create a new service -> select **GitHub** -> pick `ai-code-reviewer`.
+3. Deploy as a Python Web Service on the free tier.
 
 ---
 
