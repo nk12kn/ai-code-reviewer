@@ -1,0 +1,67 @@
+/* Custom Styles & Dark Security Theme */
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0E1424;
+}
+::-webkit-scrollbar-thumb {
+    background: #1F2937;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+}
+
+/* Diff Line Colors */
+.diff-add {
+    color: #34D399;
+    background-color: rgba(6, 78, 59, 0.25);
+    display: block;
+    padding: 1px 4px;
+    border-left: 2px solid #10B981;
+}
+.diff-del {
+    color: #F87171;
+    background-color: rgba(127, 29, 29, 0.25);
+    display: block;
+    padding: 1px 4px;
+    border-left: 2px solid #EF4444;
+}
+.diff-chunk {
+    color: #60A5FA;
+    background-color: rgba(30, 58, 138, 0.2);
+    display: block;
+    padding: 1px 4px;
+}
+
+/* Code Editor Textarea */
+#code-input {
+    tab-size: 4;
+    outline: none;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+}
+
+/* Card Hover Effects */
+.issue-card {
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.issue-card:hover {
+    transform: translateY(-1px);
+    border-color: #374151;
+}
+
+/* Loading Pulse */
+@keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 0.4; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+.animate-pulse-ring {
+    animation: pulse-ring 2s infinite ease-in-out;
+}

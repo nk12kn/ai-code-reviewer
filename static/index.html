@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Reviewer & Security Auditor — Automated OWASP Analysis & Remediation</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="AI Code Reviewer & Security Auditor: Detect OWASP Top 10 vulnerabilities, security leaks, SQL injection, and insecure code with instant 1-click remediation. Developed by Faraz.">
+    <meta name="keywords" content="AI Code Reviewer, Security Auditor, Faraz, OWASP Top 10, Static Analysis, Code Security, Vulnerability Scanner, Python, AST, Remediation">
+    <meta name="author" content="Faraz (faraz1726)">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI Code Reviewer & Security Auditor">
+    <meta property="og:description" content="Automated OWASP Top 10 security scanning, vulnerability detection, and AI code remediation.">
+    <meta property="og:site_name" content="AI Code Reviewer">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Code Reviewer & Security Auditor">
+    <meta name="twitter:description" content="Automated OWASP Top 10 vulnerability scanning and AI-assisted code patching.">
+
+    <!-- JSON-LD Structured Data for Googlebot -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AI Code Reviewer & Security Auditor",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "Faraz",
+        "url": "https://github.com/faraz1726"
+      },
+      "description": "Full-stack developer tool that scans code for OWASP Top 10 security vulnerabilities and generates automated remediation patches."
+    }
+    </script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#06B6D4',
+                            emerald: '#10B981',
+                            rose: '#F43F5E',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-[#0B0F19] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="border-b border-gray-800 bg-[#0E1424]/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-500 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-shield-halved text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                        AI Code Reviewer <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800">Security Auditor</span>
+                    </h1>
+                    <p class="text-xs text-gray-400">OWASP Top 10 • Static Analysis • Auto-Remediation</p>
+                </div>
+            </div>
+
+            <!-- Header Quick Actions -->
+            <div class="flex items-center space-x-3">
+                <button id="btn-toggle-api" class="text-xs px-3 py-2 rounded-lg bg-gray-800/80 hover:bg-gray-750 border border-gray-700 text-gray-300 flex items-center gap-2 transition">
+                    <i class="fa-solid fa-key text-cyan-400"></i>
+                    <span>AI Settings</span>
+                </button>
+                <div class="flex items-center text-xs text-emerald-400 bg-emerald-950/40 border border-emerald-800/60 px-2.5 py-1.5 rounded-lg">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span>
+                    Engine Ready
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI Settings Modal -->
+    <div id="api-modal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-[#111827] border border-gray-700 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-cyan-400"></i> AI Engine Configuration
+                </h3>
+                <button id="btn-close-modal" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-xs text-gray-400">
+                The scanner operates 100% offline with its built-in rule engine. To enable deep semantic LLM reviews, configure an API key below.
+            </p>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Provider</label>
+                    <select id="setting-provider" class="w-full bg-[#1F2937] border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyan-500">
+                        <option value="offline">Offline Rule Engine (Built-in, Fast, No Key)</option>
+                        <option value="gemini">Google Gemini API (Gemini 1.5)</option>
+                        <option value="openai">OpenAI / Compatible Endpoint</option>
+                    </select>
+                </div>
+                <div id="api-key-group" class="hidden">
+                    <label class="block text-xs font-medium text-gray-300 mb-1">API Key</label>
+                    <input type="password" id="setting-api-key" placeholder="AIzaSy... or sk-..." class="w-full bg-[#1F2937] border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyan-500">
+                </div>
+            </div>
+            <div class="pt-2 flex justify-end">
+                <button id="btn-save-settings" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-xs font-semibold transition">
+                    Save Preferences
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Workspace -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Code Editor & Controls (7 Cols) -->
+        <section class="lg:col-span-7 flex flex-col space-y-4">
+            
+            <!-- Controls Bar -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+                <div class="flex items-center space-x-2">
+                    <label for="select-lang" class="text-xs text-gray-400 font-medium">Language:</label>
+                    <select id="select-lang" class="bg-[#1F2937] border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-cyan-500">
+                        <option value="auto">Auto Detect</option>
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C / C++</option>
+                        <option value="html">HTML</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <label for="select-sample" class="text-xs text-gray-400 font-medium">Sample:</label>
+                    <select id="select-sample" class="bg-[#1F2937] border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-cyan-300 focus:outline-none focus:border-cyan-500">
+                        <option value="">-- Load Vulnerable Sample --</option>
+                        <option value="python_sqli">Python: SQL Injection & Secrets</option>
+                        <option value="node_cmd">Node.js: Command Injection & MD5</option>
+                        <option value="java_auth">Java: Hardcoded DB & Unsafe Query</option>
+                    </select>
+
+                    <button id="btn-clear-code" title="Clear Code" class="p-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-rose-400 hover:bg-gray-750 transition text-xs">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Code Editor Box -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl flex flex-col flex-1 overflow-hidden shadow-xl min-h-[460px] relative">
+                <div class="bg-[#161F30] px-4 py-2 border-b border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-code text-cyan-400"></i>
+                        <span id="label-filename">snippet.py</span>
+                    </span>
+                    <span id="label-line-count">0 lines</span>
+                </div>
+
+                <div class="flex-1 relative flex">
+                    <!-- Line Numbers gutter -->
+                    <div id="line-numbers" class="w-12 bg-[#0E1424] text-gray-600 text-right pr-3 pt-3 font-mono text-xs select-none border-r border-gray-800/80 leading-6">
+                        1
+                    </div>
+                    <!-- Editor Textarea -->
+                    <textarea id="code-input" spellcheck="false" placeholder="// Paste your source code here or select a sample above..." class="flex-1 bg-transparent p-3 font-mono text-xs text-gray-200 focus:outline-none resize-none leading-6 w-full h-full"></textarea>
+                </div>
+
+                <!-- Drag & Drop Overlay Info -->
+                <div class="border-t border-gray-800/60 bg-[#0E1424]/60 px-4 py-2 flex items-center justify-between text-xs text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <input type="file" id="file-upload" class="hidden">
+                        <button id="btn-trigger-upload" class="hover:text-cyan-400 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-arrow-up"></i> Upload File
+                        </button>
+                    </div>
+                    <span class="text-gray-500">Supports: .py, .js, .ts, .java, .cpp, .html</span>
+                </div>
+            </div>
+
+            <!-- Audit Action Button -->
+            <button id="btn-scan" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-cyan-600/25 flex items-center justify-center gap-2 transition duration-200">
+                <i class="fa-solid fa-magnifying-glass-chart text-base"></i>
+                <span>Audit & Review Code</span>
+            </button>
+        </section>
+
+        <!-- Right Column: Audit Results & Remediation (5 Cols) -->
+        <section class="lg:col-span-5 flex flex-col space-y-4">
+            
+            <!-- Security Score & Metric Cards -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 shadow-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-sm font-bold uppercase tracking-wider text-gray-300">Security Health</h2>
+                        <p class="text-xs text-gray-400" id="scan-status-text">Ready for scan</p>
+                    </div>
+                    <div class="text-right">
+                        <span id="scan-duration" class="text-[11px] text-gray-500">-- ms</span>
+                    </div>
+                </div>
+
+                <!-- Score Gauge -->
+                <div class="flex items-center gap-6">
+                    <div class="relative w-24 h-24 flex items-center justify-center">
+                        <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-gray-800" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="score-circle" class="text-emerald-500 transition-all duration-1000 ease-out" stroke-dasharray="100, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        </svg>
+                        <div class="absolute flex flex-col items-center justify-center">
+                            <span id="score-val" class="text-2xl font-black text-white">100</span>
+                            <span id="score-grade" class="text-[10px] font-bold text-emerald-400 px-1.5 py-0.2 bg-emerald-950/60 rounded">A+</span>
+                        </div>
+                    </div>
+
+                    <!-- Severity Count Badges -->
+                    <div class="flex-1 grid grid-cols-2 gap-2">
+                        <div class="bg-rose-950/30 border border-rose-900/40 rounded-lg p-2 flex items-center justify-between">
+                            <span class="text-xs text-rose-300 font-medium">Critical</span>
+                            <span id="badge-critical" class="text-sm font-bold text-rose-400">0</span>
+                        </div>
+                        <div class="bg-amber-950/30 border border-amber-900/40 rounded-lg p-2 flex items-center justify-between">
+                            <span class="text-xs text-amber-300 font-medium">High</span>
+                            <span id="badge-high" class="text-sm font-bold text-amber-400">0</span>
+                        </div>
+                        <div class="bg-yellow-950/30 border border-yellow-900/40 rounded-lg p-2 flex items-center justify-between">
+                            <span class="text-xs text-yellow-300 font-medium">Medium</span>
+                            <span id="badge-medium" class="text-sm font-bold text-yellow-400">0</span>
+                        </div>
+                        <div class="bg-blue-950/30 border border-blue-900/40 rounded-lg p-2 flex items-center justify-between">
+                            <span class="text-xs text-blue-300 font-medium">Low/Info</span>
+                            <span id="badge-low" class="text-sm font-bold text-blue-400">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export & Quick Fix Action Buttons -->
+                <div class="mt-4 pt-4 border-t border-gray-800 flex items-center justify-between gap-2">
+                    <button id="btn-apply-fix" disabled class="flex-1 py-2 px-3 bg-emerald-600/20 border border-emerald-700/50 hover:bg-emerald-600/30 text-emerald-300 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Apply Fixes
+                    </button>
+                    <button id="btn-export-md" disabled class="py-2 px-3 bg-gray-800 border border-gray-700 hover:bg-gray-750 text-gray-300 rounded-lg text-xs font-medium flex items-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-file-arrow-down"></i> Export MD
+                    </button>
+                    <button id="btn-export-json" disabled class="py-2 px-3 bg-gray-800 border border-gray-700 hover:bg-gray-750 text-gray-300 rounded-lg text-xs font-medium flex items-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-code"></i> JSON
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabbed Inspector -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl flex-1 flex flex-col overflow-hidden shadow-xl min-h-[380px]">
+                
+                <!-- Tab Headers -->
+                <div class="flex border-b border-gray-800 bg-[#0E1424]">
+                    <button id="tab-btn-issues" class="tab-btn active px-4 py-3 text-xs font-medium text-cyan-400 border-b-2 border-cyan-400 flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>Vulnerabilities (<span id="tab-issues-count">0</span>)</span>
+                    </button>
+                    <button id="tab-btn-diff" class="tab-btn px-4 py-3 text-xs font-medium text-gray-400 hover:text-gray-200 border-b-2 border-transparent flex items-center gap-2">
+                        <i class="fa-solid fa-code-compare"></i>
+                        <span>Remediation Diff</span>
+                    </button>
+                    <button id="tab-btn-clean" class="tab-btn px-4 py-3 text-xs font-medium text-gray-400 hover:text-gray-200 border-b-2 border-transparent flex items-center gap-2">
+                        <i class="fa-solid fa-shield-check"></i>
+                        <span>Secured Code</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content 1: Issues List -->
+                <div id="tab-content-issues" class="p-4 flex-1 overflow-y-auto space-y-3 max-h-[500px]">
+                    <div id="empty-issues-msg" class="h-48 flex flex-col items-center justify-center text-gray-500 text-center">
+                        <i class="fa-solid fa-circle-check text-4xl mb-2 text-gray-600"></i>
+                        <p class="text-sm font-medium">No active audit results</p>
+                        <p class="text-xs text-gray-600">Click "Audit & Review Code" to detect security vulnerabilities</p>
+                    </div>
+                    <div id="issues-container" class="space-y-3"></div>
+                </div>
+
+                <!-- Tab Content 2: Unified Diff -->
+                <div id="tab-content-diff" class="hidden p-4 flex-1 overflow-y-auto font-mono text-xs max-h-[500px]">
+                    <pre id="diff-container" class="text-gray-400 whitespace-pre-wrap leading-relaxed">// No diff generated yet.</pre>
+                </div>
+
+                <!-- Tab Content 3: Secured Code -->
+                <div id="tab-content-clean" class="hidden p-4 flex-1 overflow-y-auto font-mono text-xs max-h-[500px]">
+                    <div class="flex justify-end mb-2">
+                        <button id="btn-copy-clean" class="text-xs px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded border border-gray-700">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre id="clean-code-container" class="text-emerald-300 whitespace-pre-wrap leading-relaxed">// Remediated code will appear here after scanning.</pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800/80 bg-[#0E1424] py-3 text-center text-xs text-gray-500">
+        AI Code Reviewer & Security Auditor • Built for Developer Security
+    </footer>
+
+    <!-- Frontend Script -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
