@@ -63,7 +63,13 @@ async def serve_sitemap():
         with open(sitemap_file, "r", encoding="utf-8") as f:
             return PlainTextResponse(f.read(), media_type="application/xml")
     return PlainTextResponse("", media_type="application/xml")
-
+@app.get("/ads.txt", response_class=PlainTextResponse)
+async def serve_ads_txt():
+    ads_file = os.path.join(STATIC_DIR, "ads.txt")
+    if os.path.exists(ads_file):
+        with open(ads_file, "r", encoding="utf-8") as f:
+            return PlainTextResponse(f.read())
+    return PlainTextResponse("google.com, pub-1754691668630560, DIRECT, f08c47fec0942fa0")
 
 
 @app.get("/api/health")
