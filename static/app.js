@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initSettingsModal();
     loadSamples();
     setupEventListeners();
+    initFaqAccordion();
+    resetResults();
 });
 
 // -------------------------------------------------------------
@@ -374,21 +376,45 @@ function formatDiff(diffText) {
 
 function resetResults() {
     currentScanResult = null;
-    document.getElementById("score-val").textContent = "100";
-    document.getElementById("score-grade").textContent = "A+";
-    document.getElementById("score-circle").setAttribute("stroke-dasharray", "100, 100");
-    document.getElementById("badge-critical").textContent = "0";
-    document.getElementById("badge-high").textContent = "0";
-    document.getElementById("badge-medium").textContent = "0";
-    document.getElementById("badge-low").textContent = "0";
-    document.getElementById("scan-status-text").textContent = "Ready for scan";
+    document.getElementById("score-val").textContent = "--";
+    const scoreGrade = document.getElementById("score-grade");
+    scoreGrade.textContent = "PENDING";
+    scoreGrade.className = "text-[9px] font-bold text-gray-400 px-1.5 py-0.5 bg-gray-800/80 rounded mt-0.5";
+    const scoreCircle = document.getElementById("score-circle");
+    scoreCircle.setAttribute("stroke-dasharray", "0, 100");
+    scoreCircle.setAttribute("class", "text-gray-700 transition-all duration-1000 ease-out");
+    document.getElementById("badge-critical").textContent = "--";
+    document.getElementById("badge-high").textContent = "--";
+    document.getElementById("badge-medium").textContent = "--";
+    document.getElementById("badge-low").textContent = "--";
+    document.getElementById("scan-status-text").innerHTML = '<i class="fa-regular fa-circle-question mr-1"></i> Not analyzed yet';
+    const scanDuration = document.getElementById("scan-duration");
+    if (scanDuration) scanDuration.textContent = "Awaiting Scan";
+    const countBadge = document.getElementById("tab-issues-count");
+    if (countBadge) countBadge.textContent = "0";
     document.getElementById("issues-container").innerHTML = "";
     document.getElementById("empty-issues-msg").classList.remove("hidden");
-    document.getElementById("diff-container").textContent = "// No diff generated yet.";
+    document.getElementById("diff-container").textContent = "// No diff generated yet. Run an audit on vulnerable code to inspect remediation patches.";
     document.getElementById("clean-code-container").textContent = "// Remediated code will appear here after scanning.";
     document.getElementById("btn-apply-fix").disabled = true;
     document.getElementById("btn-export-md").disabled = true;
     document.getElementById("btn-export-json").disabled = true;
+}
+
+function initFaqAccordion() {
+    document.querySelectorAll(".faq-item").forEach(item => {
+        item.addEventListener("click", () => {
+            const answer = item.querySelector(".faq-answer");
+            const icon = item.querySelector(".faq-icon");
+            if (answer) {
+                const isHidden = answer.classList.contains("hidden");
+                answer.classList.toggle("hidden");
+                if (icon) {
+                    icon.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
+                }
+            }
+        });
+    });
 }
 
 // -------------------------------------------------------------

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Top 10:2025 Application Security Guide — AI Code Reviewer</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1754691668630560" crossorigin="anonymous"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="In-depth developer reference to the OWASP Top 10:2025 application security risks. Learn official categories, real-world vulnerable code examples, and modern mitigations.">
+    <meta name="keywords" content="OWASP Top 10 2025, Broken Access Control, Cryptographic Failures, Injection, SSRF, Application Security, Secure Coding, Software Supply Chain">
+    <link rel="canonical" href="https://higher-geographic-allow-that.trycloudflare.com/learn/owasp-top-10">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#06B6D4',
+                            emerald: '#10B981',
+                            rose: '#F43F5E',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-[#0B0F19] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="border-b border-gray-800 bg-[#0E1424]/95 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-base font-bold text-white">AI Code Reviewer</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800 ml-1.5 font-medium">Security Guide</span>
+                </div>
+            </a>
+            <div class="flex items-center space-x-4 text-xs font-medium text-gray-300">
+                <a href="/#analyzer" class="hover:text-cyan-400 transition flex items-center gap-1.5"><i class="fa-solid fa-code"></i> Scanner</a>
+                <a href="/learn/sql-injection" class="hover:text-cyan-400 transition hidden sm:inline">SQL Injection</a>
+                <a href="/about" class="hover:text-cyan-400 transition hidden sm:inline">About</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+        
+        <!-- Breadcrumb & Header -->
+        <div class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                <a href="/" class="hover:text-cyan-400">Home</a>
+                <span>/</span>
+                <span class="text-gray-400">Learn Security</span>
+                <span>/</span>
+                <span class="text-cyan-400">OWASP Top 10:2025</span>
+            </nav>
+            <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs px-2.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800 font-bold">Standard Reference</span>
+                <span class="text-xs px-2.5 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800 font-medium">OWASP Top 10:2025</span>
+                <span class="text-xs text-gray-400">• 15 min technical read</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                OWASP Top 10:2025 Technical Reference & Code Guide
+            </h1>
+            <p class="text-sm sm:text-base text-gray-300 mt-3 leading-relaxed">
+                An original, engineering-focused breakdown of the OWASP Top 10:2025 standard. Review each of the ten critical security categories with clear explanations of root causes, realistic code snippets, and mitigation checklists.
+            </p>
+        </div>
+
+        <article class="space-y-8 text-sm text-gray-300 leading-relaxed border-t border-gray-800 pt-6">
+
+            <!-- Overview -->
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-cyan-400"></i> The Evolution of OWASP Top 10:2025
+                </h2>
+                <p>
+                    The Open Worldwide Application Security Project (OWASP) Top 10 serves as the global benchmark for web application security awareness. The 2025 framework emphasizes modern software development realities: distributed cloud architectures, third-party software supply chains, automated API integrations, and robust authorization models.
+                </p>
+            </section>
+
+            <!-- The 10 Categories -->
+            <div class="space-y-6">
+
+                <!-- A01 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">A01:2025 • CRITICAL</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-285, CWE-639</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A01:2025 – Broken Access Control</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Access control enforces policy such that users cannot act outside of their intended permissions. Failures allow unauthorized information disclosure, data modification, or privilege escalation (such as Insecure Direct Object References - IDOR).
+                    </p>
+                    <div class="bg-[#0E1424] p-3 rounded-lg border border-gray-800 font-mono text-xs text-rose-300">
+                        <code># Insecure IDOR: User A can view User B's record by modifying the URL ID
+@app.get("/invoices/{invoice_id}")
+def get_invoice(invoice_id: int):
+    return db.query("SELECT * FROM invoices WHERE id = ?", invoice_id)</code>
+                    </div>
+                    <div class="bg-[#0E1424] p-3 rounded-lg border border-emerald-900/40 font-mono text-xs text-emerald-300">
+                        <code># Secure: Enforce tenant ownership in every query
+@app.get("/invoices/{invoice_id}")
+def get_invoice(invoice_id: int, current_user = Depends(get_current_user)):
+    return db.query("SELECT * FROM invoices WHERE id = ? AND tenant_id = ?", invoice_id, current_user.tenant_id)</code>
+                    </div>
+                </div>
+
+                <!-- A02 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">A02:2025 • HIGH</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-327, CWE-328</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A02:2025 – Cryptographic Failures</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Previously called Sensitive Data Exposure. Focuses on cryptography flaws such as transmitting plaintext credentials over unencrypted HTTP, utilizing broken hashing algorithms (MD5, SHA-1), or hardcoding static initialization vectors (IVs).
+                    </p>
+                    <p class="text-xs text-gray-300">
+                        <strong class="text-white">Remediation:</strong> Use modern authenticated encryption (AES-256-GCM, ChaCha20-Poly1305) and salted adaptive hashing algorithms (Argon2id, bcrypt, PBKDF2) for passwords.
+                    </p>
+                </div>
+
+                <!-- A03 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">A03:2025 • CRITICAL</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-89, CWE-78, CWE-79</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A03:2025 – Injection & Software/Data Integrity</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Occurs when hostile or unvalidated data is sent to an interpreter as part of a command or query. Covers SQL injection, OS command injection, LDAP injection, and Cross-Site Scripting (XSS).
+                    </p>
+                    <div class="flex gap-3 text-xs">
+                        <a href="/learn/sql-injection" class="text-cyan-400 hover:underline">&rarr; Read SQLi Guide</a>
+                        <a href="/learn/xss" class="text-cyan-400 hover:underline">&rarr; Read XSS Guide</a>
+                        <a href="/learn/command-injection" class="text-cyan-400 hover:underline">&rarr; Read Command Injection Guide</a>
+                    </div>
+                </div>
+
+                <!-- A04 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">A04:2025 • MEDIUM/HIGH</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-1053, CWE-209</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A04:2025 – Insecure Design</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Focuses on architectural and design flaws rather than low-level implementation bugs. A perfectly coded application can still be insecure if its threat model fails to account for business logic abuse, credential stuffing, or lack of rate limiting.
+                    </p>
+                    <p class="text-xs text-gray-300">
+                        <strong class="text-white">Remediation:</strong> Establish threat modeling during the design phase; design defense-in-depth boundaries and secure state machines before writing code.
+                    </p>
+                </div>
+
+                <!-- A05 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">A05:2025 • HIGH</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-16, CWE-611</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A05:2025 – Security Misconfiguration</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Occurs when systems are deployed with default credentials enabled, verbose error stack traces displayed in production, permissive CORS wildcards (<code class="text-rose-300">Access-Control-Allow-Origin: *</code> with credentials), or missing security headers (HSTS, CSP, X-Frame-Options).
+                    </p>
+                </div>
+
+                <!-- Publisher Context Unit -->
+                <div class="bg-[#0E1424] border border-dashed border-gray-700 rounded-xl p-4 text-center my-6">
+                    <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2 font-mono">Developer Resource Sponsor</span>
+                    <div class="h-20 bg-gray-900 rounded-lg flex items-center justify-center text-xs text-gray-500">
+                        <ins class="adsbygoogle"
+                             style="display:block; text-align:center;"
+                             data-ad-layout="in-article"
+                             data-ad-format="fluid"
+                             data-ad-client="ca-pub-1754691668630560"
+                             data-ad-slot="default"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+                </div>
+
+                <!-- A06 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">A06:2025 • HIGH</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-1104</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A06:2025 – Vulnerable and Outdated Components</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Modern software relies on hundreds of open-source packages. Neglecting dependency updates exposes applications to publicly disclosed CVE exploits in underlying frameworks, web servers, and transitive libraries.
+                    </p>
+                    <p class="text-xs text-gray-300">
+                        <strong class="text-white">Remediation:</strong> Continuously monitor dependencies using Software Composition Analysis (SCA) and automated lockfile auditing tools.
+                    </p>
+                </div>
+
+                <!-- A07 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">A07:2025 • HIGH</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-287, CWE-384</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A07:2025 – Identification & Authentication Failures</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Confirmation of user identity, session management, and credential protection. Vulnerabilities include allowing automated credential stuffing, weak password policies, session fixation, and failing to invalidate JWTs upon logout.
+                    </p>
+                </div>
+
+                <!-- A08 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">A08:2025 • HIGH</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-502, CWE-494</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A08:2025 – Software and Data Integrity Failures</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Relates to code and infrastructure that does not protect against integrity violations. Includes insecure deserialization (e.g. Python <code class="text-cyan-300">pickle</code> or Java ObjectInputStream), unverified auto-updates, and tampered CI/CD build pipelines.
+                    </p>
+                </div>
+
+                <!-- A09 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800">A09:2025 • MEDIUM</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-778, CWE-117</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A09:2025 – Security Logging and Monitoring Failures</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Without sufficient logging and alerting, unauthorized access attempts cannot be detected in real-time. Crucially, logs must also be protected against log injection (CWE-117) and must never log plain-text passwords or secret tokens.
+                    </p>
+                </div>
+
+                <!-- A10 -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">A10:2025 • CRITICAL</span>
+                        <span class="text-xs text-gray-500 font-mono">CWE-918</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">A10:2025 – Server-Side Request Forgery (SSRF) & API Flaws</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        SSRF flaws occur whenever a web application fetches a remote resource without validating the user-supplied URL. Attackers coerce the application into making HTTP requests to internal subnets (e.g., AWS metadata endpoint <code class="text-rose-300">http://169.254.169.254/latest/meta-data/</code>) or unexposed backend databases.
+                    </p>
+                    <p class="text-xs text-gray-300">
+                        <strong class="text-white">Remediation:</strong> Enforce strict URL scheme and IP allowlisting (reject private RFC 1918 and link-local ranges before issuing requests).
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="bg-gradient-to-r from-cyan-950/40 to-blue-950/40 border border-cyan-800/40 rounded-xl p-6 text-center space-y-3">
+                <h3 class="text-base font-bold text-white">Audit Your Code Against OWASP Standards</h3>
+                <p class="text-xs text-gray-400 max-w-lg mx-auto">
+                    Our AST scanner evaluates code against OWASP Top 10 categories, identifying injection patterns, hardcoded secrets, and cryptographic defects automatically.
+                </p>
+                <a href="/#analyzer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-cyan-600/30 transition">
+                    <i class="fa-solid fa-code"></i> Launch Interactive Scanner
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-[#0A0D16] py-10 mt-12 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div class="col-span-2 md:col-span-1 space-y-2">
+                <span class="font-bold text-sm text-white">AI Code Reviewer</span>
+                <p class="text-xs text-gray-400 leading-relaxed">AST-based static code auditing and educational security knowledge base.</p>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Guides</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/sql-injection" class="hover:text-cyan-400">SQL Injection</a></li>
+                    <li><a href="/learn/xss" class="hover:text-cyan-400">Cross-Site Scripting</a></li>
+                    <li><a href="/learn/owasp-top-10" class="text-cyan-400">OWASP Top 10:2025</a></li>
+                    <li><a href="/learn/hardcoded-secrets" class="hover:text-cyan-400">Hardcoded Secrets</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Languages</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/python-security" class="hover:text-cyan-400">Python Practices</a></li>
+                    <li><a href="/learn/javascript-security" class="hover:text-cyan-400">JavaScript / Node</a></li>
+                    <li><a href="/learn/secure-coding" class="hover:text-cyan-400">Secure Principles</a></li>
+                    <li><a href="/learn/command-injection" class="hover:text-cyan-400">Command Injection</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Trust & Legal</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/about" class="hover:text-cyan-400">About Our Technology</a></li>
+                    <li><a href="/privacy" class="hover:text-cyan-400">Privacy Policy</a></li>
+                    <li><a href="/terms" class="hover:text-cyan-400">Terms of Service</a></li>
+                    <li><a href="/security-disclaimer" class="hover:text-cyan-400">Security Disclaimer</a></li>
+                    <li><a href="/contact" class="hover:text-cyan-400">Contact & Disclosure</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800/80 pt-6 text-center text-gray-600 max-w-7xl mx-auto px-4">
+            &copy; 2026 AI Code Reviewer & Security Auditor. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

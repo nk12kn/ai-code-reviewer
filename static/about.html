@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our Technology & Architecture — AI Code Reviewer</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1754691668630560" crossorigin="anonymous"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about the technical architecture behind AI Code Reviewer & Security Auditor: deterministic Abstract Syntax Tree (AST) static analysis, rule engines, and dual-mode AI remediation.">
+    <meta name="keywords" content="About AI Code Reviewer, AST static analysis, code security scanner architecture, SAST methodology, OWASP code review">
+    <link rel="canonical" href="https://higher-geographic-allow-that.trycloudflare.com/about">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#06B6D4',
+                            emerald: '#10B981',
+                            rose: '#F43F5E',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-[#0B0F19] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="border-b border-gray-800 bg-[#0E1424]/95 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-shield-halved text-white text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                        AI Code Reviewer <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800 font-medium">Architecture</span>
+                    </span>
+                    <p class="text-[11px] text-gray-400">Static AST Analysis & Security Knowledge Base</p>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-6 text-xs font-medium text-gray-300">
+                <a href="/#analyzer" class="hover:text-cyan-400 transition flex items-center gap-1.5"><i class="fa-solid fa-code"></i> Scanner</a>
+                <a href="/#how-it-works" class="hover:text-cyan-400 transition">How It Works</a>
+                <a href="/#vulnerabilities" class="hover:text-cyan-400 transition">Vulnerabilities</a>
+                <div class="relative group">
+                    <button class="hover:text-cyan-400 transition flex items-center gap-1 py-2">
+                        <span>Learn Security</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition"></i>
+                    </button>
+                    <div class="absolute left-0 mt-1 w-64 bg-[#111827] border border-gray-700 rounded-xl shadow-2xl py-2 hidden group-hover:block z-50">
+                        <a href="/learn/sql-injection" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-solid fa-database mr-2 text-rose-400"></i> SQL Injection Guide</a>
+                        <a href="/learn/xss" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-solid fa-code mr-2 text-amber-400"></i> Cross-Site Scripting (XSS)</a>
+                        <a href="/learn/owasp-top-10" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-solid fa-list-check mr-2 text-cyan-400"></i> OWASP Top 10:2025</a>
+                        <a href="/learn/hardcoded-secrets" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-solid fa-key mr-2 text-rose-400"></i> Hardcoded Secrets</a>
+                        <a href="/learn/command-injection" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-solid fa-terminal mr-2 text-rose-400"></i> Command Injection</a>
+                        <a href="/learn/secure-coding" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-solid fa-shield-check mr-2 text-emerald-400"></i> Secure Coding Principles</a>
+                        <a href="/learn/python-security" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-brands fa-python mr-2 text-blue-400"></i> Python Security</a>
+                        <a href="/learn/javascript-security" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white"><i class="fa-brands fa-js mr-2 text-yellow-400"></i> JavaScript / Node Security</a>
+                    </div>
+                </div>
+                <a href="/about" class="text-cyan-400 font-semibold transition">About</a>
+                <a href="/contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+            <a href="/" class="hover:text-cyan-400">Home</a>
+            <span>/</span>
+            <span class="text-cyan-400">About Our Technology</span>
+        </nav>
+
+        <div class="space-y-4 mb-8">
+            <span class="text-xs font-semibold text-cyan-400 tracking-wider uppercase px-2.5 py-1 rounded-full bg-cyan-950 border border-cyan-800">
+                Engineering & Architecture
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                About AI Code Reviewer & Security Auditor
+            </h1>
+            <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                AI Code Reviewer & Security Auditor is an educational developer utility and static application security testing (SAST) platform. Built to assist software developers, security students, and engineering teams, the application combines deterministic Abstract Syntax Tree (AST) inspection with an offline security rules engine to surface insecure code patterns before code reaches production repositories.
+            </p>
+        </div>
+
+        <article class="space-y-8 text-sm text-gray-300 leading-relaxed border-t border-gray-800 pt-8">
+
+            <!-- Mission -->
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-bullseye text-cyan-400"></i> Project Objective
+                </h2>
+                <p>
+                    Modern application vulnerabilities frequently originate from basic coding flaws that are fully preventable: unsanitized query parameters, raw string formatting in database calls, unescaped user inputs passed to system shells, and unencrypted credentials committed to source trees. While complex vulnerabilities require deep threat modeling, a vast portion of software risk can be caught in the developer's immediate feedback loop.
+                </p>
+                <p>
+                    Our objective is twofold:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-[#111827] border border-gray-800 rounded-xl p-4">
+                        <div class="text-cyan-400 font-semibold mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt"></i> 1. Rapid In-Memory Auditing
+                        </div>
+                        <p class="text-xs text-gray-400">
+                            Deliver immediate, offline-capable code audits without requiring heavyweight tool installations, project setup, or remote database synchronization.
+                        </p>
+                    </div>
+                    <div class="bg-[#111827] border border-gray-800 rounded-xl p-4">
+                        <div class="text-cyan-400 font-semibold mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap"></i> 2. Actionable Security Education
+                        </div>
+                        <p class="text-xs text-gray-400">
+                            Equip developers with clear, educational explanations of why a pattern is hazardous, mapping findings directly to MITRE CWE and OWASP standards with working secure alternatives.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Architecture -->
+            <section class="space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-blue-400"></i> Architectural Pipeline
+                </h2>
+                <p>
+                    The application operates on a layered analysis pipeline that separates lexical parsing, security rule heuristics, scoring computation, and safe patch synthesis:
+                </p>
+
+                <div class="space-y-4 text-xs">
+                    <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
+                        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center text-xs">1</span>
+                            Language Detection & AST Parsing
+                        </h3>
+                        <p class="text-gray-400">
+                            Incoming source code is ingested in-memory by the FastAPI application. If the language is set to "Auto Detect", the backend inspects syntax markers, keywords, and file extension clues to resolve the target language (Python, JavaScript, TypeScript, Java, C/C++, or HTML). For Python, the system constructs a native Abstract Syntax Tree using Python's standard <code class="text-cyan-300">ast</code> module, allowing the scanner to inspect call expressions, function definitions, and imported symbols deterministically.
+                        </p>
+                    </div>
+
+                    <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
+                        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center text-xs">2</span>
+                            Security Rules Engine & CWE Mapping
+                        </h3>
+                        <p class="text-gray-400">
+                            The code is evaluated against a curated catalog of security rules implemented in <code class="text-cyan-300">core/security_rules.py</code>. Rules target specific anti-patterns such as SQL string concatenation (<code class="text-rose-400">CWE-89</code>), command execution via shells (<code class="text-rose-400">CWE-78</code>), hardcoded API tokens and private keys (<code class="text-rose-400">CWE-798</code>), weak hashing algorithms like MD5/SHA-1 (<code class="text-rose-400">CWE-327</code>), and unvalidated DOM sinks (<code class="text-rose-400">CWE-79</code>).
+                        </p>
+                    </div>
+
+                    <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
+                        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center text-xs">3</span>
+                            Deductive Scoring Algorithm
+                        </h3>
+                        <p class="text-gray-400">
+                            Unlike vanity metrics that grant arbitrary scores, our scoring engine begins at a baseline of 100 points and applies mathematically defined deductions weighted by vulnerability severity: Critical (-25 to -35 points), High (-15 points), Medium (-8 points), and Low/Info (-3 points). The final score is bounded between 0 and 100, mapping to grades A+ (90-100), A (80-89), B (70-79), C (60-69), and F (&lt;60). Prior to executing an audit, the interface indicates "Not analyzed yet" to avoid misleading users.
+                        </p>
+                    </div>
+
+                    <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
+                        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center text-xs">4</span>
+                            Remediation Synthesizer & Unified Diff
+                        </h3>
+                        <p class="text-gray-400">
+                            When vulnerabilities are isolated, the rule engine applies deterministic transformations (such as substituting string concatenations with query parameters or replacing insecure imports). The engine uses Python's standard <code class="text-cyan-300">difflib</code> module to compute a unified diff, rendering green additions and red deletions that can be reviewed visually or copied directly into source control.
+                        </p>
+                    </div>
+
+                    <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
+                        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center text-xs">5</span>
+                            Optional Semantic LLM Integration
+                        </h3>
+                        <p class="text-gray-400">
+                            For developers desiring deeper semantic context, the platform allows optional configuration of external LLM endpoints (such as Google Gemini or OpenAI). When configured, the user's API key is stored strictly within the client's local browser storage (<code class="text-cyan-300">localStorage</code>) and used solely to query the designated API endpoint for supplementary remediation explanations.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publisher Context & Educational Value -->
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-book-open text-emerald-400"></i> Dedicated Security Knowledge Base
+                </h2>
+                <p>
+                    Software security cannot be achieved by automated tools alone; developer knowledge is the critical differentiator. To support developer education, this website maintains extensive original technical guides covering critical vulnerability classes:
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs pt-2">
+                    <a href="/learn/sql-injection" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">SQL Injection</a>
+                    <a href="/learn/xss" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">XSS Prevention</a>
+                    <a href="/learn/owasp-top-10" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">OWASP Top 10:2025</a>
+                    <a href="/learn/hardcoded-secrets" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">Hardcoded Secrets</a>
+                    <a href="/learn/command-injection" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">Command Injection</a>
+                    <a href="/learn/secure-coding" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">Secure Coding</a>
+                    <a href="/learn/python-security" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">Python Security</a>
+                    <a href="/learn/javascript-security" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300 font-medium text-center">JavaScript Security</a>
+                </div>
+            </section>
+
+            <!-- Honest Limitations -->
+            <section class="bg-[#111827] border border-gray-800 rounded-xl p-6 space-y-3">
+                <h2 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> Scope & Operating Boundaries
+                </h2>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    We believe in full transparency regarding what automated code analysis can and cannot accomplish. Static AST analysis inspects source code at rest. It is exceptionally effective at catching syntax-level blunders, insecure library calls, and hardcoded patterns. However, it cannot verify complex business logic flaws (such as multi-step workflow authorization), inspect live network firewalls, or substitute for comprehensive manual penetration testing. For full details on operating boundaries, review our <a href="/security-disclaimer" class="text-cyan-400 underline">Security Disclaimer</a>.
+                </p>
+            </section>
+
+            <!-- Call to action -->
+            <div class="pt-4 flex flex-wrap gap-4">
+                <a href="/#analyzer" class="px-5 py-2.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs transition flex items-center gap-2">
+                    <i class="fa-solid fa-code"></i> Open Interactive Scanner
+                </a>
+                <a href="/contact" class="px-5 py-2.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 font-semibold text-xs border border-gray-700 transition flex items-center gap-2">
+                    <i class="fa-regular fa-envelope"></i> Contact & Security Inquiries
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-[#0A0D16] py-10 mt-12 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div class="col-span-2 md:col-span-1 space-y-2">
+                <span class="font-bold text-sm text-white">AI Code Reviewer</span>
+                <p class="text-xs text-gray-400 leading-relaxed">AST-based static code auditing and educational security knowledge base.</p>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Guides</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/sql-injection" class="hover:text-cyan-400">SQL Injection</a></li>
+                    <li><a href="/learn/xss" class="hover:text-cyan-400">Cross-Site Scripting</a></li>
+                    <li><a href="/learn/owasp-top-10" class="hover:text-cyan-400">OWASP Top 10:2025</a></li>
+                    <li><a href="/learn/hardcoded-secrets" class="hover:text-cyan-400">Hardcoded Secrets</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Languages</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/python-security" class="hover:text-cyan-400">Python Practices</a></li>
+                    <li><a href="/learn/javascript-security" class="hover:text-cyan-400">JavaScript / Node</a></li>
+                    <li><a href="/learn/secure-coding" class="hover:text-cyan-400">Secure Principles</a></li>
+                    <li><a href="/learn/command-injection" class="hover:text-cyan-400">Command Injection</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Trust & Legal</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/about" class="text-cyan-400">About Our Technology</a></li>
+                    <li><a href="/privacy" class="hover:text-cyan-400">Privacy Policy</a></li>
+                    <li><a href="/terms" class="hover:text-cyan-400">Terms of Service</a></li>
+                    <li><a href="/security-disclaimer" class="hover:text-cyan-400">Security Disclaimer</a></li>
+                    <li><a href="/contact" class="hover:text-cyan-400">Contact & Disclosure</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800/80 pt-6 text-center text-gray-600 max-w-7xl mx-auto px-4">
+            &copy; 2026 AI Code Reviewer & Security Auditor. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

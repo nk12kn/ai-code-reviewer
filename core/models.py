@@ -74,3 +74,16 @@ class FixResponse(BaseModel):
     unified_diff: str
     fixed_count: int
     explanations: List[str]
+
+
+class ContactRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100)
+    email: str = Field(..., min_length=3, max_length=150)
+    subject: str = Field(..., min_length=1, max_length=200)
+    message: str = Field(..., min_length=5, max_length=5000)
+
+
+class ContactResponse(BaseModel):
+    status: str
+    message: str
+

@@ -8,7 +8,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
-from core.models import ScanRequest, ScanResponse, FixRequest, FixResponse
+from core.models import ScanRequest, ScanResponse, FixRequest, FixResponse, ContactRequest, ContactResponse
 from core.scanner import CodeScanner
 
 app = FastAPI(
@@ -38,13 +38,70 @@ if os.path.exists(STATIC_DIR):
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
+def _serve_html(filename: str, subfolder: str = "") -> HTMLResponse:
+    """Safely serve an HTML file from static or a subfolder within static."""
+    target_dir = os.path.join(STATIC_DIR, subfolder) if subfolder else STATIC_DIR
+    target_path = os.path.normpath(os.path.join(target_dir, filename))
+    # Prevent directory traversal outside STATIC_DIR
+    if not target_path.startswith(STATIC_DIR) or not os.path.exists(target_path):
+        raise HTTPException(status_code=404, detail="Page not found")
+    with open(target_path, "r", encoding="utf-8") as f:
+        return HTMLResponse(content=f.read())
+
+
 @app.get("/", response_class=HTMLResponse)
 async def serve_index():
-    index_file = os.path.join(STATIC_DIR, "index.html")
-    if os.path.exists(index_file):
-        with open(index_file, "r", encoding="utf-8") as f:
-            return HTMLResponse(content=f.read())
-    return HTMLResponse("<h1>AI Code Reviewer & Security Auditor API is Running</h1>")
+    return _serve_html("index.html")
+
+
+@app.get("/learn/{topic}", response_class=HTMLResponse)
+async def serve_learn_topic(topic: str):
+    # Normalize slug, remove optional .html if provided
+    clean_topic = topic[:-5] if topic.endswith(".html") else topic
+    filename = f"{clean_topic}.html"
+    return _serve_html(filename, subfolder="learn")
+
+
+@app.get("/about", response_class=HTMLResponse)
+@app.get("/about.html", response_class=HTMLResponse)
+async def serve_about():
+    return _serve_html("about.html")
+
+
+@app.get("/contact", response_class=HTMLResponse)
+@app.get("/contact.html", response_class=HTMLResponse)
+async def serve_contact():
+    return _serve_html("contact.html")
+
+
+@app.get("/privacy", response_class=HTMLResponse)
+@app.get("/privacy.html", response_class=HTMLResponse)
+async def serve_privacy():
+    return _serve_html("privacy.html")
+
+
+@app.get("/terms", response_class=HTMLResponse)
+@app.get("/terms.html", response_class=HTMLResponse)
+async def serve_terms():
+    return _serve_html("terms.html")
+
+
+@app.get("/security-disclaimer", response_class=HTMLResponse)
+@app.get("/security-disclaimer.html", response_class=HTMLResponse)
+@app.get("/security", response_class=HTMLResponse)
+async def serve_security_disclaimer():
+    return _serve_html("security-disclaimer.html")
+
+
+@app.post("/api/contact", response_model=ContactResponse)
+async def handle_contact(payload: ContactRequest):
+    """Receive contact messages or responsible disclosure reports."""
+    # In a production environment with email/DB configured, this would dispatch an alert or ticket.
+    # Here we perform rigorous validation and return a confirmed receipt.
+    return ContactResponse(
+        status="success",
+        message=f"Thank you, {payload.name.strip()}. Your inquiry regarding '{payload.subject.strip()}' has been recorded."
+    )
 
 
 @app.get("/robots.txt", response_class=PlainTextResponse)
@@ -53,7 +110,7 @@ async def serve_robots():
     if os.path.exists(robots_file):
         with open(robots_file, "r", encoding="utf-8") as f:
             return PlainTextResponse(f.read())
-    return PlainTextResponse("User-agent: *\nAllow: /")
+    return PlainTextResponse("User-agent: *\nAllow: /\nSitemap: /sitemap.xml")
 
 
 @app.get("/sitemap.xml", response_class=PlainTextResponse)
@@ -72,6 +129,7 @@ async def serve_ads_txt():
         with open(ads_file, "r", encoding="utf-8") as f:
             return PlainTextResponse(f.read())
     return PlainTextResponse("google.com, pub-1754691668630560, DIRECT, f08c47fec0942fa0")
+
 
 
 

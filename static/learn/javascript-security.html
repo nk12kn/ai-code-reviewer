@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript & Node.js Security Hardening Guide — AI Code Reviewer</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1754691668630560" crossorigin="anonymous"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="In-depth guide to JavaScript & Node.js application security: mitigate Prototype Pollution, child_process command injection, ReDoS, eval risks, and SSRF.">
+    <meta name="keywords" content="JavaScript Security, Node.js security, Prototype Pollution, child_process exec vs execFile, ReDoS, eval security, Helmet Express">
+    <link rel="canonical" href="https://higher-geographic-allow-that.trycloudflare.com/learn/javascript-security">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#06B6D4',
+                            emerald: '#10B981',
+                            rose: '#F43F5E',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-[#0B0F19] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="border-b border-gray-800 bg-[#0E1424]/95 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-base font-bold text-white">AI Code Reviewer</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800 ml-1.5 font-medium">Security Guide</span>
+                </div>
+            </a>
+            <div class="flex items-center space-x-4 text-xs font-medium text-gray-300">
+                <a href="/#analyzer" class="hover:text-cyan-400 transition flex items-center gap-1.5"><i class="fa-solid fa-code"></i> Scanner</a>
+                <a href="/learn/xss" class="hover:text-cyan-400 transition hidden sm:inline">XSS Prevention</a>
+                <a href="/about" class="hover:text-cyan-400 transition hidden sm:inline">About</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+        
+        <!-- Breadcrumb & Header -->
+        <div class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                <a href="/" class="hover:text-cyan-400">Home</a>
+                <span>/</span>
+                <span class="text-gray-400">Learn Security</span>
+                <span>/</span>
+                <span class="text-cyan-400">JavaScript & Node.js Security</span>
+            </nav>
+            <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs px-2.5 py-0.5 rounded bg-yellow-950 text-yellow-300 border border-yellow-800 font-bold">JavaScript & Node</span>
+                <span class="text-xs text-gray-400">• 13 min technical read</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                Defending Node.js & JavaScript Applications: Sinks, Prototypes & Processes
+            </h1>
+            <p class="text-sm sm:text-base text-gray-300 mt-3 leading-relaxed">
+                JavaScript's asynchronous runtime and prototype-based object model introduce unique security vulnerabilities. Explore how prototype pollution corrupts global state, how child_process injection triggers server compromise, and how to defend against ReDoS and SSRF in backend services.
+            </p>
+        </div>
+
+        <article class="space-y-8 text-sm text-gray-300 leading-relaxed border-t border-gray-800 pt-6">
+
+            <!-- Flaw 1: Prototype Pollution -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-dna text-rose-400"></i> 1. Prototype Pollution (CWE-1321)
+                    </h2>
+                    <span class="text-xs px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800 font-bold">CRITICAL</span>
+                </div>
+                <p>
+                    JavaScript objects inherit properties from prototypes. When recursive object merging utilities unsafely process keys like <code class="text-rose-300 font-mono">__proto__</code> or <code class="text-rose-300 font-mono">constructor.prototype</code>, properties are injected directly into the root <code class="text-cyan-300 font-mono">Object.prototype</code>, polluting all objects across the entire Node.js runtime process!
+                </p>
+
+                <div class="bg-[#0E1424] border border-rose-900/40 rounded-xl p-4 font-mono text-xs overflow-x-auto space-y-2">
+                    <span class="text-rose-400">// Vulnerable: Unsafe deep merge assigns __proto__ properties</span>
+                    <pre class="text-rose-300">function unsafeMerge(target, source) {
+    for (let key in source) {
+        if (typeof source[key] === 'object') {
+            if (!target[key]) target[key] = {};
+            unsafeMerge(target[key], source[key]); // Exploited via payload: {"__proto__": {"isAdmin": true}}
+        } else {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}</pre>
+                </div>
+
+                <div class="bg-[#0E1424] border border-emerald-900/40 rounded-xl p-4 font-mono text-xs overflow-x-auto space-y-2">
+                    <span class="text-emerald-400">// Secure: Ignore prototype keys or use Map / prototype-less objects</span>
+                    <pre class="text-emerald-300">function safeMerge(target, source) {
+    for (let key of Object.keys(source)) {
+        // Drop hazardous prototype keys immediately
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype') continue;
+        
+        if (typeof source[key] === 'object' && source[key] !== null) {
+            if (!target[key]) target[key] = Object.create(null); // No prototype link
+            safeMerge(target[key], source[key]);
+        } else {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}</pre>
+                </div>
+            </section>
+
+            <!-- Flaw 2: child_process exec vs execFile -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-terminal text-rose-400"></i> 2. Node.js Command Injection: exec vs execFile
+                    </h2>
+                    <span class="text-xs px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800 font-bold">CRITICAL</span>
+                </div>
+                <p>
+                    In Node.js, <code class="text-rose-300 font-mono">child_process.exec()</code> passes the command string directly to the system shell (`/bin/sh -c` on Unix or `cmd.exe /d /s /c` on Windows), enabling shell metacharacter injection. By contrast, <code class="text-emerald-300 font-mono">child_process.execFile()</code> invokes the binary directly without a shell wrapper.
+                </p>
+
+                <div class="bg-[#0E1424] border border-gray-800 rounded-xl p-4 font-mono text-xs space-y-2">
+                    <span class="text-rose-400">// Insecure: exec evaluates shell string</span>
+                    <pre class="text-gray-300">const { exec } = require('child_process');
+// If userInput is "file.txt; rm -rf /"
+exec(`git checkout ${userInput}`, (err, stdout) => { ... });</pre>
+
+                    <span class="text-emerald-400 block pt-2 border-t border-gray-800">// Secure: execFile executes binary directly with argument array</span>
+                    <pre class="text-emerald-300">const { execFile } = require('child_process');
+// Arguments are treated strictly as literals, not shell commands
+execFile('git', ['checkout', userInput], (err, stdout) => { ... });</pre>
+                </div>
+            </section>
+
+            <!-- Publisher Context Unit -->
+            <div class="bg-[#0E1424] border border-dashed border-gray-700 rounded-xl p-4 text-center my-8">
+                <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2 font-mono">Developer Resource Sponsor</span>
+                <div class="h-20 bg-gray-900 rounded-lg flex items-center justify-center text-xs text-gray-500">
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-1754691668630560"
+                         data-ad-slot="default"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </div>
+
+            <!-- Flaw 3: ReDoS -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-hourglass-half text-amber-400"></i> 3. Regular Expression Denial of Service (ReDoS) (CWE-1333)
+                    </h2>
+                    <span class="text-xs px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800 font-bold">HIGH</span>
+                </div>
+                <p>
+                    Because Node.js runs on a single-threaded event loop, regular expressions containing evil nested quantifiers like <code class="text-rose-300 font-mono">/^(a+)+$/</code> can trigger catastrophic exponential backtracking when matching adversarial inputs (e.g. 50 'a's followed by an 'x'). The entire Node.js event loop blocks, freezing the server for all connected clients.
+                </p>
+                <div class="bg-[#0E1424] p-3 rounded-lg border border-gray-800 font-mono text-xs text-gray-300">
+                    <span class="text-rose-400">// Insecure catastrophic pattern:</span><br>
+                    const evilRegex = /^([a-zA-Z0-9_-]+)+$/;<br>
+                    evilRegex.test("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!"); <span class="text-rose-400">// Blocks event loop for minutes</span><br><br>
+                    <span class="text-emerald-400">// Secure: Simplified linear quantifier with atomic bounds</span><br>
+                    const safeRegex = /^[a-zA-Z0-9_-]{1,100}$/;<br>
+                    safeRegex.test(userInput); <span class="text-emerald-400">// Executes in microsecond O(n) time</span>
+                </div>
+            </section>
+
+            <!-- Flaw 4: Server-Side Request Forgery -->
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-blue-400"></i> 4. Server-Side Request Forgery (SSRF) in Axios / Fetch
+                </h2>
+                <p>
+                    When a backend Node.js microservice downloads a remote avatar or webhook URL supplied by the user, attackers often pass addresses like <code class="text-rose-300 font-mono">http://169.254.169.254/latest/meta-data/</code> or <code class="text-rose-300 font-mono">http://localhost:6379</code>.
+                </p>
+                <p class="text-xs text-gray-400">
+                    <strong class="text-white">Defense:</strong> Resolve the DNS IP before initiating the request and reject private ranges (RFC 1918 addresses: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, and loopback 127.0.0.1).
+                </p>
+            </section>
+
+            <!-- Checklist -->
+            <section class="bg-[#111827] border border-gray-800 rounded-xl p-6 space-y-3">
+                <h2 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-emerald-400"></i> Node.js & JS Security Checklist
+                </h2>
+                <div class="space-y-2 text-xs text-gray-300">
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                        <div><strong class="text-white">Protect Prototypes:</strong> Use <code class="text-cyan-300">Object.create(null)</code> or <code class="text-cyan-300">Map</code> for dynamic dictionaries. Consider running with <code class="text-cyan-300">--disable-proto=delete</code>.</div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                        <div><strong class="text-white">Adopt Helmet.js:</strong> Equip Express applications with <code class="text-cyan-300">helmet()</code> to enforce HSTS, X-Content-Type-Options, and frame restrictions.</div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                        <div><strong class="text-white">Ban eval & Function constructors:</strong> Never parse user strings into executable code.</div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                        <div><strong class="text-white">Continuous npm audit:</strong> Run regular package dependency audits to catch supply chain CVEs.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <div class="bg-gradient-to-r from-cyan-950/40 to-blue-950/40 border border-cyan-800/40 rounded-xl p-6 text-center space-y-3">
+                <h3 class="text-base font-bold text-white">Review Your JavaScript & Node.js Code</h3>
+                <p class="text-xs text-gray-400 max-w-lg mx-auto">
+                    Audit your front-end scripts or server-side Node.js endpoints for innerHTML sinks, child_process injection, and prototype issues.
+                </p>
+                <a href="/#analyzer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-cyan-600/30 transition">
+                    <i class="fa-solid fa-code"></i> Launch Interactive Scanner
+                </a>
+            </div>
+
+            <!-- Related Guides Links -->
+            <div class="border-t border-gray-800 pt-6">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Related Educational Guides</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                    <a href="/learn/xss" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300">
+                        &rarr; Cross-Site Scripting (XSS)
+                    </a>
+                    <a href="/learn/command-injection" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300">
+                        &rarr; Command Injection Prevention
+                    </a>
+                    <a href="/learn/owasp-top-10" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300">
+                        &rarr; OWASP Top 10:2025 Guide
+                    </a>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-[#0A0D16] py-10 mt-12 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div class="col-span-2 md:col-span-1 space-y-2">
+                <span class="font-bold text-sm text-white">AI Code Reviewer</span>
+                <p class="text-xs text-gray-400 leading-relaxed">AST-based static code auditing and educational security knowledge base.</p>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Guides</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/sql-injection" class="hover:text-cyan-400">SQL Injection</a></li>
+                    <li><a href="/learn/xss" class="hover:text-cyan-400">Cross-Site Scripting</a></li>
+                    <li><a href="/learn/owasp-top-10" class="hover:text-cyan-400">OWASP Top 10:2025</a></li>
+                    <li><a href="/learn/hardcoded-secrets" class="hover:text-cyan-400">Hardcoded Secrets</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Languages</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/python-security" class="hover:text-cyan-400">Python Practices</a></li>
+                    <li><a href="/learn/javascript-security" class="text-cyan-400">JavaScript / Node</a></li>
+                    <li><a href="/learn/secure-coding" class="hover:text-cyan-400">Secure Principles</a></li>
+                    <li><a href="/learn/command-injection" class="hover:text-cyan-400">Command Injection</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Trust & Legal</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/about" class="hover:text-cyan-400">About Our Technology</a></li>
+                    <li><a href="/privacy" class="hover:text-cyan-400">Privacy Policy</a></li>
+                    <li><a href="/terms" class="hover:text-cyan-400">Terms of Service</a></li>
+                    <li><a href="/security-disclaimer" class="hover:text-cyan-400">Security Disclaimer</a></li>
+                    <li><a href="/contact" class="hover:text-cyan-400">Contact & Disclosure</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800/80 pt-6 text-center text-gray-600 max-w-7xl mx-auto px-4">
+            &copy; 2026 AI Code Reviewer & Security Auditor. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

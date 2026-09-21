@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Coding Principles & Best Practices — AI Code Reviewer</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1754691668630560" crossorigin="anonymous"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Core secure coding principles for software engineers. Learn defense-in-depth, least privilege, input allowlisting, secure error handling, and safe API design.">
+    <meta name="keywords" content="Secure coding principles, defensive programming, least privilege, input validation, defense in depth, secure development lifecycle">
+    <link rel="canonical" href="https://higher-geographic-allow-that.trycloudflare.com/learn/secure-coding">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#06B6D4',
+                            emerald: '#10B981',
+                            rose: '#F43F5E',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-[#0B0F19] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="border-b border-gray-800 bg-[#0E1424]/95 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-base font-bold text-white">AI Code Reviewer</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800 ml-1.5 font-medium">Security Guide</span>
+                </div>
+            </a>
+            <div class="flex items-center space-x-4 text-xs font-medium text-gray-300">
+                <a href="/#analyzer" class="hover:text-cyan-400 transition flex items-center gap-1.5"><i class="fa-solid fa-code"></i> Scanner</a>
+                <a href="/learn/owasp-top-10" class="hover:text-cyan-400 transition hidden sm:inline">OWASP Top 10</a>
+                <a href="/about" class="hover:text-cyan-400 transition hidden sm:inline">About</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+        
+        <!-- Breadcrumb & Header -->
+        <div class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                <a href="/" class="hover:text-cyan-400">Home</a>
+                <span>/</span>
+                <span class="text-gray-400">Learn Security</span>
+                <span>/</span>
+                <span class="text-cyan-400">Secure Coding Principles</span>
+            </nav>
+            <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs px-2.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">Engineering Best Practices</span>
+                <span class="text-xs text-gray-400">• 11 min technical read</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                Fundamental Secure Coding Principles for Modern Developers
+            </h1>
+            <p class="text-sm sm:text-base text-gray-300 mt-3 leading-relaxed">
+                Writing resilient software requires adopting defensive engineering habits. Discover the foundational axioms of application security that protect systems across Python, JavaScript, Java, and cloud-native architectures.
+            </p>
+        </div>
+
+        <article class="space-y-8 text-sm text-gray-300 leading-relaxed border-t border-gray-800 pt-6">
+
+            <!-- Principle 1: Least Privilege -->
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-key text-cyan-400"></i> 1. Principle of Least Privilege (PoLP)
+                </h2>
+                <p>
+                    Every module, database connection, background worker, and system user should operate using only the minimal set of privileges required to perform its authorized function. Violating PoLP amplifies the blast radius of any individual exploit:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs pt-1">
+                    <div class="bg-[#111827] border border-rose-900/40 rounded-xl p-4">
+                        <strong class="text-rose-400 block mb-1">Insecure Anti-Pattern</strong>
+                        Web services connecting to PostgreSQL using the <code class="text-rose-300 font-mono">postgres</code> superuser. An SQL injection flaw in one query gives the attacker capability to read all schemas, drop tables, or write files to disk via <code class="text-rose-300 font-mono">COPY TO PROGRAM</code>.
+                    </div>
+                    <div class="bg-[#111827] border border-emerald-900/40 rounded-xl p-4">
+                        <strong class="text-emerald-400 block mb-1">Hardened Implementation</strong>
+                        Application users granted strictly scoped <code class="text-emerald-300 font-mono">SELECT, INSERT, UPDATE</code> privileges on application tables only, with no permissions on system catalogs or drop privileges.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Principle 2: Defense in Depth -->
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-blue-400"></i> 2. Defense in Depth
+                </h2>
+                <p>
+                    Never rely on a single defensive barrier. Software security must be architected in concentric layers such that if one defensive control fails or is bypassed, subsequent layers prevent catastrophic compromise.
+                </p>
+                <ul class="list-disc pl-5 space-y-2 text-xs text-gray-400">
+                    <li><strong class="text-white">Edge Layer:</strong> Web Application Firewall (WAF) and rate limiting.</li>
+                    <li><strong class="text-white">Transport Layer:</strong> Enforced TLS 1.3 and HSTS headers.</li>
+                    <li><strong class="text-white">Application Layer:</strong> Input allowlist validation, strict parameterization, and context-aware escaping.</li>
+                    <li><strong class="text-white">Client Layer:</strong> Strict Content Security Policy (CSP) and HttpOnly flags.</li>
+                    <li><strong class="text-white">Storage Layer:</strong> Column-level encryption and access audit logging.</li>
+                </ul>
+            </section>
+
+            <!-- Principle 3: Input Validation vs Denylisting -->
+            <section class="space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-filter text-emerald-400"></i> 3. Input Validation: Allowlist vs. Denylist
+                </h2>
+                <p>
+                    One of the most frequent mistakes in security programming is attempting to sanitize inputs by removing known "bad" characters (denylisting). Attackers continually bypass denylists using character encodings, Unicode variations, null bytes, or alternative syntax.
+                </p>
+                
+                <div class="bg-[#0E1424] border border-gray-800 rounded-xl p-4 font-mono text-xs space-y-2">
+                    <div class="text-rose-400">// Insecure Denylist Approach: Easy to bypass
+function isSafeFilename(name) {
+    return !name.includes("../"); // Bypassable via "..%2f" or "....//"
+}</div>
+                    <div class="text-emerald-400 pt-2 border-t border-gray-800">// Secure Allowlist Approach: Strictly permits alphanumeric tokens
+function isSafeFilename(name) {
+    return /^[a-zA-Z0-9_-]{1,64}\.[a-zA-Z0-9]{2,4}$/.test(name);
+}</div>
+                </div>
+            </section>
+
+            <!-- Publisher Context Unit -->
+            <div class="bg-[#0E1424] border border-dashed border-gray-700 rounded-xl p-4 text-center my-8">
+                <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2 font-mono">Developer Resource Sponsor</span>
+                <div class="h-20 bg-gray-900 rounded-lg flex items-center justify-center text-xs text-gray-500">
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-1754691668630560"
+                         data-ad-slot="default"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </div>
+
+            <!-- Principle 4: Secure Error Handling -->
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-bug-slash text-amber-400"></i> 4. Fail-Safe Defaults & Secure Error Handling
+                </h2>
+                <p>
+                    Systems should default to a state of denial. If an authorization check encounters an unexpected exception or database timeout, the application must reject access, not default to open.
+                </p>
+                <p class="text-xs text-gray-400">
+                    Furthermore, error handling in production must never leak stack traces, database schema details, or absolute filesystem paths to the end user. Leaked tracebacks facilitate attacker reconnaissance and targeted payload construction.
+                </p>
+                <div class="bg-[#0E1424] p-3 rounded-lg border border-gray-800 font-mono text-xs text-gray-300">
+                    <span class="text-rose-400"># Insecure: Leaking exception details to HTTP clients</span><br>
+                    except Exception as err:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return JSONResponse({"error": str(err)}, status_code=500)<br><br>
+                    <span class="text-emerald-400"># Secure: Log internally with correlation ID; return opaque message to client</span><br>
+                    except Exception as err:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;logger.error(f"Incident [{request_id}]: {str(err)}", exc_info=True)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return JSONResponse({"error": "An internal error occurred. Ref: " + request_id}, status_code=500)
+                </div>
+            </section>
+
+            <!-- Checklist -->
+            <section class="bg-[#111827] border border-gray-800 rounded-xl p-6 space-y-3">
+                <h2 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-check text-cyan-400"></i> Secure Coding Engineering Checklist
+                </h2>
+                <div class="space-y-2 text-xs text-gray-300">
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+                        <div><strong class="text-white">Never Trust User Input:</strong> Validate type, length, format, and allowed characters on the server side regardless of client checks.</div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+                        <div><strong class="text-white">Use Parameterized Interfaces:</strong> Mandate prepared statements for SQL and list-based argument arrays for subprocess execution.</div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+                        <div><strong class="text-white">Protect Secrets at Rest:</strong> Never commit API keys or connection strings to Git repositories. Use environment variables and secrets managers.</div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+                        <div><strong class="text-white">Automate Static Auditing:</strong> Integrate AST security analysis into your pre-commit hooks and continuous integration workflows.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <div class="bg-gradient-to-r from-cyan-950/40 to-blue-950/40 border border-cyan-800/40 rounded-xl p-6 text-center space-y-3">
+                <h3 class="text-base font-bold text-white">Review Your Code Against Secure Coding Best Practices</h3>
+                <p class="text-xs text-gray-400 max-w-lg mx-auto">
+                    Paste your code into our scanner to detect insecure error handlers, missing parameterizations, and weak credential patterns instantly.
+                </p>
+                <a href="/#analyzer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-cyan-600/30 transition">
+                    <i class="fa-solid fa-code"></i> Launch Interactive Scanner
+                </a>
+            </div>
+
+            <!-- Related Guides Links -->
+            <div class="border-t border-gray-800 pt-6">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Related Educational Guides</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                    <a href="/learn/python-security" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300">
+                        &rarr; Python Security Practices
+                    </a>
+                    <a href="/learn/hardcoded-secrets" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300">
+                        &rarr; Hardcoded Secrets Defense
+                    </a>
+                    <a href="/learn/command-injection" class="p-3 bg-[#111827] border border-gray-800 rounded-lg hover:border-cyan-500 transition block text-cyan-300">
+                        &rarr; Command Injection Prevention
+                    </a>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-[#0A0D16] py-10 mt-12 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div class="col-span-2 md:col-span-1 space-y-2">
+                <span class="font-bold text-sm text-white">AI Code Reviewer</span>
+                <p class="text-xs text-gray-400 leading-relaxed">AST-based static code auditing and educational security knowledge base.</p>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Guides</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/sql-injection" class="hover:text-cyan-400">SQL Injection</a></li>
+                    <li><a href="/learn/xss" class="hover:text-cyan-400">Cross-Site Scripting</a></li>
+                    <li><a href="/learn/owasp-top-10" class="hover:text-cyan-400">OWASP Top 10:2025</a></li>
+                    <li><a href="/learn/hardcoded-secrets" class="hover:text-cyan-400">Hardcoded Secrets</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Languages</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/learn/python-security" class="hover:text-cyan-400">Python Practices</a></li>
+                    <li><a href="/learn/javascript-security" class="hover:text-cyan-400">JavaScript / Node</a></li>
+                    <li><a href="/learn/secure-coding" class="text-cyan-400">Secure Principles</a></li>
+                    <li><a href="/learn/command-injection" class="hover:text-cyan-400">Command Injection</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="font-bold text-white uppercase tracking-wider block mb-2">Trust & Legal</span>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><a href="/about" class="hover:text-cyan-400">About Our Technology</a></li>
+                    <li><a href="/privacy" class="hover:text-cyan-400">Privacy Policy</a></li>
+                    <li><a href="/terms" class="hover:text-cyan-400">Terms of Service</a></li>
+                    <li><a href="/security-disclaimer" class="hover:text-cyan-400">Security Disclaimer</a></li>
+                    <li><a href="/contact" class="hover:text-cyan-400">Contact & Disclosure</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800/80 pt-6 text-center text-gray-600 max-w-7xl mx-auto px-4">
+            &copy; 2026 AI Code Reviewer & Security Auditor. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
