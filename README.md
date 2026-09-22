@@ -1,140 +1,97 @@
-# AI Code Reviewer & Security Auditor 🛡️
+# AI Code Reviewer & Security Auditor
 
-A full-stack, developer-first **AI Code Reviewer & Security Auditor** that automatically detects OWASP Top 10 vulnerabilities, leaked credentials, dangerous functions, and code smells across multiple programming languages. It computes a comprehensive Security Health Score, produces visual unified diffs, and offers 1-click automated secure code remediation.
+## Project Overview
+The **AI Code Reviewer & Security Auditor** is a full-stack web application designed to automatically scan source code for security vulnerabilities, calculate a security health score, and generate unified diff patches to remediate detected issues. It provides both an offline heuristic static analysis engine (AST-based) and an optional AI-powered semantic analysis mode.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.12-blue.svg)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-teal.svg)
-![Security](https://img.shields.io/badge/OWASP-Top%2010-red.svg)
+## Problem Statement
+Modern software development moves quickly, often leading to insecure coding practices being pushed to production. Identifying OWASP Top 10 vulnerabilities (like SQL Injection, XSS, and hardcoded secrets) manually is time-consuming and error-prone. This project aims to automate the detection and remediation of these flaws at the developer level, acting as an educational tool and an automated security guardrail.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nk12kn/ai-code-reviewer)
+## Features
+- **Project Identity & Dashboard:** Comprehensive UI with project details, Google Sign-In authentication, and a security health gauge.
+- **Static AST Analysis:** In-memory code parsing to detect flaws without executing untrusted code.
+- **AI Remediation Engine:** Optional LLM integration (Google Gemini) for advanced semantic refactoring and explanation generation.
+- **OWASP Top 10 Coverage:** Rules mapping directly to CWEs (SQLi, XSS, Command Injection, Secrets, etc.).
+- **Educational Mode:** Built-in knowledge base explaining vulnerabilities and secure coding principles.
+- **Automated Patching:** Generates Git-compatible unified diffs for instant 1-click remediation.
+- **Secure File Handling:** Safe upload processing and graceful error handling.
 
----
+## Architecture
+The application follows a client-server model:
+1. **Frontend:** Vanilla HTML/JS/TailwindCSS providing an interactive code editor, vulnerability dashboard, and tabbed inspector (Issues, Diff, Clean Code).
+2. **Backend:** FastAPI (Python) exposing REST endpoints (`/api/scan`, `/api/remediate`).
+3. **Engines:**
+   - `core/scanner.py`: Orchestrates the analysis flow.
+   - `core/security_rules.py`: Contains regex and AST-based heuristic rules.
+   - `core/ai_engine.py`: Synthesizes unified diff patches using heuristics or LLM APIs.
 
-## 🚀 Key Features
+## Technology Stack
+- **Frontend:** HTML5, JavaScript (ES6+), Tailwind CSS, FontAwesome.
+- **Backend:** Python 3.10+, FastAPI, Uvicorn, Pydantic.
+- **Authentication:** Google Identity Services (OAuth 2.0 / OIDC).
+- **AI/LLM:** Google Gemini API (via HTTP requests).
 
-- **OWASP Top 10 & CWE Detection**:
-  - **Injection Attacks (CWE-89, CWE-78, CWE-94)**: SQL Injection via f-strings / string concatenation, OS command injection (`os.system`, `subprocess(..., shell=True)`), arbitrary code execution via `eval()`/`exec()`.
-  - **Secret & Credential Leaks (CWE-798)**: Leaked AWS Access Keys (`AKIA...`), OpenAI / LLM API keys (`sk-...`), GitHub PATs (`ghp_...`), private keys, and hardcoded database passwords.
-  - **Broken Cryptography (CWE-327, CWE-328)**: Insecure algorithms (MD5, SHA-1) and insecure cipher modes (ECB).
-  - **Cross-Site Scripting (CWE-79)**: React `dangerouslySetInnerHTML` injections, direct `innerHTML` modifications.
-  - **Insecure Deserialization (CWE-502)**: Python `pickle.loads` and unsafe `yaml.load` without SafeLoader.
-  - **Code Quality & Smells (CWE-390, CWE-489)**: Silent exception swallowing (`except: pass`), active debug flags in production.
-- **Multi-Language Support**: Python, JavaScript, TypeScript, Java, C/C++, HTML.
-- **Automated Remediation & Unified Diff**:
-  - Automatically refactors vulnerable code patterns into safe, industry-standard equivalents.
-  - Renders colored unified diffs (`+` added, `-` removed) with instant 1-click application.
-- **Dual-Engine Architecture (Offline + Online)**:
-  - **Built-in Offline Engine**: Works 100% out of the box with zero setup, zero latency, and no API keys required.
-  - **Optional LLM Integration**: Connect Google Gemini or OpenAI API keys directly from the UI for deep semantic reasoning.
-- **Cybersecurity Web Dashboard**:
-  - Modern dark-mode interface with Tailwind CSS and FontAwesome icons.
-  - Real-time circular security score gauge (0–100) and letter grades (A+ to F).
-  - One-click export to **Markdown Audit Reports** and **Structured JSON**.
+## Frontend/Backend Flow
+1. User pastes code or uploads a file on the UI.
+2. The frontend sends a JSON payload containing the code and language to the `/api/scan` endpoint.
+3. The backend routes the code through `scanner.py`, which first runs the `security_rules.py` heuristics.
+4. The backend then calculates a security score and attempts to fix issues using `ai_engine.py`.
+5. The frontend receives the JSON response and updates the dashboard gauges, issues list, and diff view.
 
----
+## Static Analysis vs AI Integration
+- **Static Analysis (Offline):** Uses deterministic pattern matching and rule-based logic to find known bad patterns (e.g., `shell=True`, `hashlib.md5`). It is fast and requires no API keys.
+- **AI Integration (Online):** If configured with an API key, the `ai_engine.py` calls the Gemini API to understand semantic context and generate complex refactoring suggestions that simple regex cannot handle. *Note: AI suggestions require human review and may occasionally hallucinate.*
 
-## 📁 Project Structure
+## Google Authentication Setup
+To enable Google Sign-In:
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+2. Create a new project or select an existing one.
+3. Navigate to **APIs & Services > Credentials**.
+4. Click **Create Credentials > OAuth client ID**.
+5. Select **Web application**.
+6. Set **Authorized JavaScript origins** to your local dev URL (e.g., `http://localhost:8000`) or production URL.
+7. Set **Authorized redirect URIs** if applicable (not required for standard popup mode).
+8. Copy the **Client ID** and paste it into the `data-client_id` attribute in `static/index.html`.
 
-```
-ai-code-reviewer/
-├── app.py                     # FastAPI backend application & API routes
-├── run.py                     # One-click launcher with auto-port & browser launch
-├── requirements.txt           # Python dependencies
-├── README.md                  # Project documentation
-├── core/
-│   ├── __init__.py
-│   ├── models.py              # Pydantic schemas (ScanRequest, Issue, FixResponse)
-│   ├── security_rules.py      # Multi-language static & AST rule engine
-│   ├── ai_engine.py           # Remediation engine, diff generator, scoring logic
-│   └── scanner.py             # Orchestrator combining rules and remediation
-├── static/
-│   ├── index.html             # Dashboard single-page application
-│   ├── styles.css             # Cyber-security dark theme & diff styling
-│   └── app.js                 # Interactive client logic & API bindings
-└── samples/
-    ├── vulnerable_sql.py      # Sample Python: SQL Injection, secrets, command exec
-    ├── vulnerable_node.js     # Sample Node.js: Command Injection, MD5, JWT secrets
-    └── vulnerable_auth.java   # Sample Java: Hardcoded DB credentials & raw queries
-```
+## Environment Variables
+The application does not strictly require environment variables for basic static analysis, but for production deployment and AI integration, set the following:
+- `GOOGLE_CLIENT_ID`: Your Google OAuth Client ID.
+- `GOOGLE_CLIENT_SECRET`: Your Google OAuth Client Secret (if doing backend validation).
+- `OPENAI_API_KEY` / `GEMINI_API_KEY`: Kept client-side in `localStorage` in this architecture, but can be moved to `.env` for forced backend enforcement.
 
-## 🌐 Permanent Cloud Deployment (24/7 Uptime)
+## Local Setup
+1. Clone the repository.
+2. Ensure Python 3.10+ is installed.
+3. Install dependencies:
+   ```bash
+   pip install fastapi uvicorn pydantic python-multipart
+   ```
+4. Run the server:
+   ```bash
+   python app.py
+   ```
+5. Open `http://localhost:8000` in your browser.
 
-This repository includes turnkey configuration files (`render.yaml`, `Dockerfile`, `Procfile`) for 1-click cloud hosting that runs 24/7 without needing your local computer on:
+## Production Deployment
+For production, the application should be deployed using a robust ASGI server behind a reverse proxy.
+1. Use `gunicorn` with `uvicorn` workers:
+   ```bash
+   gunicorn app:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000
+   ```
+2. Configure Nginx or Caddy to reverse proxy traffic to port 8000 and handle SSL/TLS.
+3. Ensure CORS policies in `app.py` are restricted to your production domain.
 
-### Option 1: Deploy on Render.com (Recommended — 100% Free)
-1. Fork or push this repository to your GitHub account: `https://github.com/nk12kn/ai-code-reviewer`.
-2. Visit **[Render.com](https://dashboard.render.com/)** and sign in with GitHub.
-3. Click **New +** -> **Blueprint** (or **Web Service**).
-4. Select `ai-code-reviewer`. Render reads `render.yaml` automatically.
-5. Click **Apply**. Your app will be live at `https://ai-code-reviewer-xxxx.onrender.com` with free SSL and automatic redeployment on every commit!
+## Limitations & Known Issues
+- **AST Limitations:** The static engine uses heuristic regex and basic structural checks rather than a full compiler frontend. It may produce false positives.
+- **AI Hallucinations:** LLM-generated fixes might introduce syntax errors or alter business logic. Human review is mandatory.
+- **Client-Side Auth:** The current Google Sign-In is purely client-side for UI demonstration purposes. A full production app must verify the JWT on the FastAPI backend before granting access to sensitive data.
 
-### Option 2: Deploy on Railway.app
-1. Go to **[Railway.app](https://railway.app/)** and click **New Project**.
-2. Select **Deploy from GitHub repo** and pick `ai-code-reviewer`.
-3. Railway detects the `Dockerfile` or `Procfile` and assigns a permanent public HTTPS URL.
-
-### Option 3: Deploy on Koyeb
-1. Sign up at **[Koyeb.com](https://app.koyeb.com/)**.
-2. Create a new service -> select **GitHub** -> pick `ai-code-reviewer`.
-3. Deploy as a Python Web Service on the free tier.
-
----
-
-## ⚡ Quick Start
-
-### 1. Requirements
-- Python 3.10+ (Python 3.12 recommended)
-
-### 2. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Run Application
-```bash
-python run.py
-```
-This automatically launches the local server at `http://127.0.0.1:8000` and opens the web dashboard in your default browser.
-
----
-
-## 📡 API Reference
-
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/` | Serves the interactive cybersecurity dashboard |
-| `GET` | `/api/health` | Health check & loaded security rules count |
-| `POST` | `/api/scan` | Scan code snippet for vulnerabilities & compute score |
-| `POST` | `/api/scan/file` | Multipart file upload for analyzing whole source files |
-| `POST` | `/api/remediate` | Generate automated secure code patches and unified diff |
-| `GET` | `/api/samples` | Retrieve preloaded vulnerable sample code snippets |
-| `POST` | `/api/export/markdown` | Generate downloadable Markdown security audit report |
-
----
-
-## 🧪 Testing the Scanner
-
-Use the preloaded sample selector in the dashboard UI or test via cURL:
-
-```bash
-curl -X POST http://127.0.0.1:8000/api/scan \
-  -H "Content-Type: application/json" \
-  -d '{
-    "code": "import os\nAWS_KEY = \"AKIA1111222233334444\"\nos.system(\"ping \" + host)",
-    "language": "python"
-  }'
-```
-
----
-
-## 🛡️ Security Grade Scale
-
-| Score | Grade | Status |
-| :---: | :---: | :--- |
-| **95 - 100** | `A+` | Excellent security posture. No critical or high risks. |
-| **85 - 94** | `A` | Good security posture. Minor low/info recommendations. |
-| **70 - 84** | `B` | Fair. Some medium vulnerabilities identified. |
-| **55 - 69** | `C` | Needs attention. High risk issues detected. |
-| **40 - 54** | `D` | Poor. Multiple severe vulnerabilities. |
-| **< 40** | `F` | Critical risk! Immediate remediation required before deployment. |
+## Demonstration Instructions (Viva)
+1. Start the local server (`python app.py`).
+2. Open the web interface.
+3. Select "Python: SQL Injection & Secrets" from the Sample dropdown.
+4. Click **Audit & Review Code**.
+5. Show the Security Health score dropping and the critical vulnerabilities listed.
+6. Switch to the **Remediation Diff** tab to show how the SQL string concatenation was replaced with parameterized queries.
+7. Click **Apply Fixes** to update the editor.
+8. Re-run the scan to show the score improving to an A+.
+9. Navigate to the **Learn Security** dropdown to demonstrate the educational mode.
