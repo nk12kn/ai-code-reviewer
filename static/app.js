@@ -69,11 +69,11 @@ function initTabs() {
         const btnEl = document.getElementById(btn);
         btnEl.addEventListener("click", () => {
             tabs.forEach(t => {
-                document.getElementById(t.btn).classList.remove("active", "text-cyan-400", "border-cyan-400");
+                document.getElementById(t.btn).classList.remove("active", "text-emerald-400", "border-emerald-400");
                 document.getElementById(t.btn).classList.add("text-gray-400", "border-transparent");
                 document.getElementById(t.content).classList.add("hidden");
             });
-            btnEl.classList.add("active", "text-cyan-400", "border-cyan-400");
+            btnEl.classList.add("active", "text-emerald-400", "border-emerald-400");
             btnEl.classList.remove("text-gray-400", "border-transparent");
             document.getElementById(content).classList.remove("hidden");
         });
@@ -327,7 +327,7 @@ function renderResults(data) {
 
 function createIssueCard(issue) {
     const card = document.createElement("div");
-    card.className = "issue-card bg-[#161F30] border border-gray-800 rounded-xl p-3.5 space-y-2.5 text-xs";
+    card.className = "issue-card bg-[#1e293b] border border-white/10 rounded-xl p-3.5 space-y-2.5 text-xs";
 
     let severityClass = "bg-rose-950 text-rose-400 border-rose-800";
     if (issue.severity === "HIGH") severityClass = "bg-amber-950 text-amber-400 border-amber-800";
@@ -343,11 +343,11 @@ function createIssueCard(issue) {
             <span class="text-gray-500 font-mono text-[11px] whitespace-nowrap">Line ${issue.line_number}</span>
         </div>
         <p class="text-gray-400 text-xs leading-relaxed">${issue.description}</p>
-        <div class="bg-[#0B0F19] rounded-lg p-2 font-mono text-[11px] text-rose-300 overflow-x-auto border border-gray-800/80">
+        <div class="bg-[#0B0F19] rounded-lg p-2 font-mono text-[11px] text-rose-300 overflow-x-auto border border-white/10/80">
             ${escapeHtml(issue.snippet)}
         </div>
-        <div class="pt-1 flex items-center justify-between text-[11px] text-gray-500 border-t border-gray-800/60">
-            <span class="text-cyan-400/80"><i class="fa-solid fa-tag mr-1"></i>${issue.cwe.split(':')[0]}</span>
+        <div class="pt-1 flex items-center justify-between text-[11px] text-gray-500 border-t border-white/10/60">
+            <span class="text-emerald-400/80"><i class="fa-solid fa-tag mr-1"></i>${issue.cwe.split(':')[0]}</span>
             <span class="text-emerald-400/90 flex items-center gap-1">
                 <i class="fa-solid fa-lightbulb"></i> Fix: ${issue.remediation.slice(0, 60)}...
             </span>
@@ -359,16 +359,18 @@ function createIssueCard(issue) {
 
 function formatDiff(diffText) {
     const lines = diffText.split("\n");
-    let html = "";
+    let html = '<div class="diff-header flex justify-between text-[10px] uppercase font-bold text-gray-500 mb-2 border-b border-white/10 pb-1"><span><i class="fa-solid fa-minus text-rose-400"></i> Insecure Snippet</span><span><i class="fa-solid fa-plus text-emerald-400"></i> Remediated Fix</span></div>';
     lines.forEach(line => {
         if (line.startsWith("+") && !line.startsWith("+++")) {
-            html += `<span class="diff-add">${escapeHtml(line)}</span>\n`;
+            html += `<span class="diff-add py-0.5 px-1 block">${escapeHtml(line)}</span>\n`;
         } else if (line.startsWith("-") && !line.startsWith("---")) {
-            html += `<span class="diff-del">${escapeHtml(line)}</span>\n`;
+            html += `<span class="diff-del py-0.5 px-1 block">${escapeHtml(line)}</span>\n`;
         } else if (line.startsWith("@@")) {
-            html += `<span class="diff-chunk">${escapeHtml(line)}</span>\n`;
+            html += `<span class="diff-chunk py-1 block text-indigo-400 opacity-70">${escapeHtml(line)}</span>\n`;
+        } else if (line.startsWith("---") || line.startsWith("+++")) {
+            // Hide the standard file headers
         } else {
-            html += `<span>${escapeHtml(line)}</span>\n`;
+            html += `<span class="block opacity-60 px-1">${escapeHtml(line)}</span>\n`;
         }
     });
     return html;

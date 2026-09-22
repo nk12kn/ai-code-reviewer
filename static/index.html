@@ -48,10 +48,10 @@
                 extend: {
                     colors: {
                         cyber: {
-                            dark: '#0B0F19',
+                            dark: '#0a0f1d',
                             card: '#111827',
                             border: '#1F2937',
-                            accent: '#06B6D4',
+                            accent: '#10B981',
                             emerald: '#10B981',
                             rose: '#F43F5E',
                             amber: '#F59E0B'
@@ -65,19 +65,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body class="bg-[#0B0F19] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+<body class="bg-[#0a0f1d] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
 
     <!-- Top Navigation -->
-    <header class="border-b border-gray-800 bg-[#0E1424]/95 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-white/10 bg-[#0E1424]/95 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <!-- Brand -->
             <a href="/" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-blue-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition">
                     <i class="fa-solid fa-shield-halved text-white text-xl"></i>
                 </div>
                 <div>
                     <h1 class="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-2">
-                        AI Code Reviewer <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800 font-medium">Security Auditor</span>
+                        AI Code Reviewer <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 font-medium">Security Auditor</span>
                     </h1>
                     <p class="text-[11px] text-gray-400">OWASP Top 10 • Static AST Analysis • Instant Remediation</p>
                 </div>
@@ -85,21 +85,21 @@
 
             <!-- Navigation Links -->
             <nav class="hidden md:flex items-center space-x-5 text-xs font-medium text-gray-300">
-                <a href="#analyzer" class="hover:text-cyan-400 transition flex items-center gap-1.5 text-cyan-400 font-semibold">
+                <a href="#analyzer" class="hover:text-emerald-400 transition flex items-center gap-1.5 text-emerald-400 font-semibold">
                     <i class="fa-solid fa-code"></i> Scanner
                 </a>
-                <a href="#how-to-use" class="hover:text-cyan-400 transition">How to Use</a>
-                <a href="#how-it-works" class="hover:text-cyan-400 transition">How It Works</a>
-                <a href="#vulnerabilities" class="hover:text-cyan-400 transition">Vulnerabilities</a>
+                <a href="#how-to-use" class="hover:text-emerald-400 transition">How to Use</a>
+                <a href="#how-it-works" class="hover:text-emerald-400 transition">How It Works</a>
+                <a href="#vulnerabilities" class="hover:text-emerald-400 transition">Vulnerabilities</a>
                 
                 <!-- Learn Dropdown -->
                 <div class="relative group">
-                    <button class="hover:text-cyan-400 transition flex items-center gap-1 py-2">
+                    <button class="hover:text-emerald-400 transition flex items-center gap-1 py-2">
                         <span>Learn Security</span>
                         <i class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition"></i>
                     </button>
-                    <div class="absolute left-0 mt-1 w-64 bg-[#111827] border border-gray-700 rounded-xl shadow-2xl py-2 hidden group-hover:block z-50">
-                        <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-800">
+                    <div class="absolute left-0 mt-1 w-64 bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl py-2 hidden group-hover:block z-50">
+                        <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-white/10">
                             Educational Knowledge Base
                         </div>
                         <a href="/learn/sql-injection" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white">
@@ -109,7 +109,7 @@
                             <i class="fa-solid fa-code mr-2 text-amber-400"></i> Cross-Site Scripting (XSS)
                         </a>
                         <a href="/learn/owasp-top-10" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white">
-                            <i class="fa-solid fa-list-check mr-2 text-cyan-400"></i> OWASP Top 10:2025
+                            <i class="fa-solid fa-list-check mr-2 text-emerald-400"></i> OWASP Top 10:2025
                         </a>
                         <a href="/learn/hardcoded-secrets" class="block px-4 py-2 text-xs hover:bg-gray-800 text-gray-300 hover:text-white">
                             <i class="fa-solid fa-key mr-2 text-rose-400"></i> Hardcoded Secrets
@@ -129,9 +129,9 @@
                     </div>
                 </div>
 
-                <a href="#faq" class="hover:text-cyan-400 transition">FAQ</a>
-                <a href="/about" class="hover:text-cyan-400 transition">About</a>
-                <a href="/contact" class="hover:text-cyan-400 transition">Contact</a>
+                <a href="#faq" class="hover:text-emerald-400 transition">FAQ</a>
+                <a href="/about" class="hover:text-emerald-400 transition">About</a>
+                <a href="/contact" class="hover:text-emerald-400 transition">Contact</a>
             </nav>
 
             
@@ -158,8 +158,8 @@
                 </div>
 <!-- Quick Action / Engine Status -->
             <div class="flex items-center space-x-3">
-                <button id="btn-toggle-api" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800/80 hover:bg-gray-750 border border-gray-700 text-gray-300 flex items-center gap-2 transition">
-                    <i class="fa-solid fa-sliders text-cyan-400"></i>
+                <button id="btn-toggle-api" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800/80 hover:bg-gray-750 border border-white/10 text-gray-300 flex items-center gap-2 transition">
+                    <i class="fa-solid fa-sliders text-emerald-400"></i>
                     <span class="hidden sm:inline">AI Settings</span>
                 </button>
                 <div class="flex items-center text-xs text-emerald-400 bg-emerald-950/40 border border-emerald-800/60 px-2.5 py-1.5 rounded-lg">
@@ -172,10 +172,10 @@
 
     <!-- AI Settings Modal -->
     <div id="api-modal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-[#111827] border border-gray-700 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+        <div class="bg-[#0f172a] border border-white/10 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
                 <h3 class="text-base font-semibold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-cyan-400"></i> AI Engine Configuration
+                    <i class="fa-solid fa-sliders text-emerald-400"></i> AI Engine Configuration
                 </h3>
                 <button id="btn-close-modal" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -185,7 +185,7 @@
             <div class="space-y-3">
                 <div>
                     <label class="block text-xs font-medium text-gray-300 mb-1">Provider</label>
-                    <select id="setting-provider" class="w-full bg-[#1F2937] border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyan-500">
+                    <select id="setting-provider" class="w-full bg-[#1F2937] border border-white/10 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-emerald-500">
                         <option value="offline">Offline Rule Engine (Built-in, Fast, No Key)</option>
                         <option value="gemini">Google Gemini API (Gemini 1.5)</option>
                         <option value="openai">OpenAI / Compatible Endpoint</option>
@@ -193,36 +193,30 @@
                 </div>
                 <div id="api-key-group" class="hidden">
                     <label class="block text-xs font-medium text-gray-300 mb-1">API Key</label>
-                    <input type="password" id="setting-api-key" placeholder="AIzaSy... or sk-..." class="w-full bg-[#1F2937] border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyan-500">
+                    <input type="password" id="setting-api-key" placeholder="AIzaSy... or sk-..." class="w-full bg-[#1F2937] border border-white/10 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-emerald-500">
                 </div>
             </div>
             <div class="pt-2 flex justify-end">
-                <button id="btn-save-settings" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-xs font-semibold transition">
+                <button id="btn-save-settings" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold transition">
                     Save Preferences
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Editorial Platform Hero (High-Value Publisher Introduction) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
-        <div class="bg-gradient-to-r from-cyan-950/40 via-blue-950/20 to-indigo-950/30 border border-cyan-800/40 rounded-2xl p-6 sm:p-7 backdrop-blur-sm relative overflow-hidden">
-            <div class="max-w-3xl space-y-2.5">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-900/60 border border-cyan-700/60 text-cyan-300 text-xs font-semibold">
-                    <i class="fa-solid fa-microchip"></i> Developer-First Security Intelligence
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
+        <div class="bg-[#0f172a]/40 border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden transition hover:border-white/20">
+            <div class="max-w-3xl space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/30 border border-emerald-700/30 text-emerald-300 text-xs font-semibold">
+                    <i class="fa-solid fa-shield-halved"></i> Practical Code Security
                 </div>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
-                    Static AST Security Auditing, Vulnerability Detection & Remediation
+                    Find and Fix Security Vulnerabilities Instantly
                 </h2>
-                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                    Identify security risks, credential leaks, and anti-patterns before they reach production. AI Code Reviewer combines high-speed <strong class="text-cyan-300 font-semibold">Abstract Syntax Tree (AST) static analysis</strong> with an offline heuristic rules engine to evaluate code against OWASP Top 10 standards, produce color-coded unified diff patches, and compute transparent security health scores.
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    A developer-focused auditor that scans your code for common risks (like SQL injection, XSS, and hardcoded secrets) and provides clear, actionable fixes. Simply paste your code, run the audit, and apply the suggested secure patches.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-1 text-xs text-gray-400">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-cyan-400"></i> In-Memory Processing</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-cyan-400"></i> Fast AST Engine</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-cyan-400"></i> Automated Remediation Patches</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-cyan-400"></i> Markdown & JSON Export</span>
-                </div>
             </div>
         </div>
     </section>
@@ -234,10 +228,10 @@
         <section class="lg:col-span-7 flex flex-col space-y-4">
             
             <!-- Controls Bar -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-lg">
                 <div class="flex items-center space-x-2">
                     <label for="select-lang" class="text-xs text-gray-400 font-medium">Language:</label>
-                    <select id="select-lang" class="bg-[#1F2937] border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-cyan-500">
+                    <select id="select-lang" class="bg-[#1F2937] border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-emerald-500">
                         <option value="auto">Auto Detect</option>
                         <option value="python">Python</option>
                         <option value="javascript">JavaScript</option>
@@ -250,7 +244,7 @@
 
                 <div class="flex items-center space-x-2">
                     <label for="select-sample" class="text-xs text-gray-400 font-medium">Sample:</label>
-                    <select id="select-sample" class="bg-[#1F2937] border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-cyan-300 focus:outline-none focus:border-cyan-500">
+                    <select id="select-sample" class="bg-[#1F2937] border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-emerald-300 focus:outline-none focus:border-emerald-500">
                         <option value="">-- Load Vulnerable Sample --</option>
                         <option value="python_sqli">Python: SQL Injection & Secrets</option>
                         <option value="node_cmd">Node.js: Command Injection & MD5</option>
@@ -264,10 +258,10 @@
             </div>
 
             <!-- Code Editor Box -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl flex flex-col flex-1 overflow-hidden shadow-xl min-h-[440px] relative">
-                <div class="bg-[#161F30] px-4 py-2 border-b border-gray-800 flex items-center justify-between text-xs text-gray-400">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl flex flex-col flex-1 overflow-hidden shadow-xl min-h-[440px] relative">
+                <div class="bg-[#1e293b] px-4 py-2 border-b border-white/10 flex items-center justify-between text-xs text-gray-400">
                     <span class="flex items-center gap-2">
-                        <i class="fa-solid fa-code text-cyan-400"></i>
+                        <i class="fa-solid fa-code text-emerald-400"></i>
                         <span id="label-filename">snippet.py</span>
                     </span>
                     <span id="label-line-count">0 lines</span>
@@ -275,7 +269,7 @@
 
                 <div class="flex-1 relative flex">
                     <!-- Line Numbers gutter -->
-                    <div id="line-numbers" class="w-12 bg-[#0E1424] text-gray-600 text-right pr-3 pt-3 font-mono text-xs select-none border-r border-gray-800/80 leading-6">
+                    <div id="line-numbers" class="w-12 bg-[#0E1424] text-gray-600 text-right pr-3 pt-3 font-mono text-xs select-none border-r border-white/10/80 leading-6">
                         1
                     </div>
                     <!-- Editor Textarea -->
@@ -283,10 +277,10 @@
                 </div>
 
                 <!-- Drag & Drop Overlay Info -->
-                <div class="border-t border-gray-800/60 bg-[#0E1424]/60 px-4 py-2 flex items-center justify-between text-xs text-gray-400">
+                <div class="border-t border-white/10/60 bg-[#0E1424]/60 px-4 py-2 flex items-center justify-between text-xs text-gray-400">
                     <div class="flex items-center gap-2">
                         <input type="file" id="file-upload" class="hidden">
-                        <button id="btn-trigger-upload" class="hover:text-cyan-400 transition flex items-center gap-1.5">
+                        <button id="btn-trigger-upload" class="hover:text-emerald-400 transition flex items-center gap-1.5">
                             <i class="fa-solid fa-file-arrow-up"></i> Upload File
                         </button>
                     </div>
@@ -295,7 +289,7 @@
             </div>
 
             <!-- Audit Action Button -->
-            <button id="btn-scan" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-cyan-600/25 flex items-center justify-center gap-2 transition duration-200">
+            <button id="btn-scan" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 via-blue-600 to-indigo-600 hover:from-emerald-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-0.5">
                 <i class="fa-solid fa-magnifying-glass-chart text-base"></i>
                 <span>Audit & Review Code</span>
             </button>
@@ -305,7 +299,7 @@
         <section class="lg:col-span-5 flex flex-col space-y-4">
             
             <!-- Security Health Card - Initial state: Not analyzed yet -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 shadow-xl relative overflow-hidden">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 shadow-xl relative overflow-hidden">
                 <div class="flex items-center justify-between mb-4">
                     <div>
                         <h2 class="text-sm font-bold uppercase tracking-wider text-gray-300">Security Health</h2>
@@ -353,25 +347,25 @@
                 </div>
 
                 <!-- Export & Quick Fix Action Buttons -->
-                <div class="mt-4 pt-4 border-t border-gray-800 flex items-center justify-between gap-2">
+                <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-2">
                     <button id="btn-apply-fix" disabled class="flex-1 py-2 px-3 bg-emerald-600/20 border border-emerald-700/50 hover:bg-emerald-600/30 text-emerald-300 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Apply Fixes
                     </button>
-                    <button id="btn-export-md" disabled class="py-2 px-3 bg-gray-800 border border-gray-700 hover:bg-gray-750 text-gray-300 rounded-lg text-xs font-medium flex items-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    <button id="btn-export-md" disabled class="py-2 px-3 bg-gray-800 border border-white/10 hover:bg-gray-750 text-gray-300 rounded-lg text-xs font-medium flex items-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
                         <i class="fa-solid fa-file-arrow-down"></i> Export MD
                     </button>
-                    <button id="btn-export-json" disabled class="py-2 px-3 bg-gray-800 border border-gray-700 hover:bg-gray-750 text-gray-300 rounded-lg text-xs font-medium flex items-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    <button id="btn-export-json" disabled class="py-2 px-3 bg-gray-800 border border-white/10 hover:bg-gray-750 text-gray-300 rounded-lg text-xs font-medium flex items-center gap-1.5 transition disabled:opacity-40 disabled:cursor-not-allowed">
                         <i class="fa-solid fa-code"></i> JSON
                     </button>
                 </div>
             </div>
 
             <!-- Tabbed Inspector -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl flex-1 flex flex-col overflow-hidden shadow-xl min-h-[380px]">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl flex-1 flex flex-col overflow-hidden shadow-xl min-h-[380px]">
                 
                 <!-- Tab Headers -->
-                <div class="flex border-b border-gray-800 bg-[#0E1424]">
-                    <button id="tab-btn-issues" class="tab-btn active px-4 py-3 text-xs font-medium text-cyan-400 border-b-2 border-cyan-400 flex items-center gap-2">
+                <div class="flex border-b border-white/10 bg-[#0E1424]">
+                    <button id="tab-btn-issues" class="tab-btn active px-4 py-3 text-xs font-medium text-emerald-400 border-b-2 border-emerald-400 flex items-center gap-2">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         <span>Vulnerabilities (<span id="tab-issues-count">0</span>)</span>
                     </button>
@@ -393,7 +387,7 @@
                         </div>
                         <p class="text-sm font-medium text-gray-300">No active audit results</p>
                         <p class="text-xs text-gray-500 max-w-xs mt-1">
-                            Click <strong class="text-cyan-400">"Audit & Review Code"</strong> to run AST parsing and vulnerability rules on the snippet.
+                            Click <strong class="text-emerald-400">"Audit & Review Code"</strong> to run AST parsing and vulnerability rules on the snippet.
                         </p>
                     </div>
                     <div id="issues-container" class="space-y-3"></div>
@@ -407,7 +401,7 @@
                 <!-- Tab Content 3: Secured Code -->
                 <div id="tab-content-clean" class="hidden p-4 flex-1 overflow-y-auto font-mono text-xs max-h-[500px]">
                     <div class="flex justify-end mb-2">
-                        <button id="btn-copy-clean" class="text-xs px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded border border-gray-700">
+                        <button id="btn-copy-clean" class="text-xs px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded border border-white/10">
                             <i class="fa-regular fa-copy"></i> Copy
                         </button>
                     </div>
@@ -423,9 +417,9 @@
     <!-- ============================================================= -->
 
     <!-- Section 1: How to Use the Tool (Developer Workflow) -->
-    <section id="how-to-use" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
+    <section id="how-to-use" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10/80">
         <div class="text-center max-w-3xl mx-auto mb-10">
-            <span class="text-xs font-semibold text-cyan-400 tracking-wider uppercase px-2.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-800">
+            <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-800">
                 User Guide
             </span>
             <h3 class="text-2xl sm:text-3xl font-bold text-white mt-3">How to Use the Security Auditor</h3>
@@ -435,40 +429,40 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs">
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
-                <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center font-bold text-sm">1</div>
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-4 space-y-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center font-bold text-sm">1</div>
                 <h4 class="font-bold text-white text-sm">Provide Code</h4>
                 <p class="text-gray-400 leading-relaxed">
                     Paste your function into the editor, select a preloaded vulnerable test sample, or upload a source file (.py, .js, .ts, .java, .cpp, .html).
                 </p>
             </div>
 
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
-                <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center font-bold text-sm">2</div>
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-4 space-y-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center font-bold text-sm">2</div>
                 <h4 class="font-bold text-white text-sm">Select Engine</h4>
                 <p class="text-gray-400 leading-relaxed">
                     Operate in instant offline mode (zero API keys required) or configure optional Google Gemini or OpenAI keys via AI Settings for deeper semantic reasoning.
                 </p>
             </div>
 
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
-                <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center font-bold text-sm">3</div>
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-4 space-y-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center font-bold text-sm">3</div>
                 <h4 class="font-bold text-white text-sm">Execute Audit</h4>
                 <p class="text-gray-400 leading-relaxed">
                     Click "Audit & Review Code". The in-memory AST engine parses the code, calculates security health deductions, and isolates vulnerabilities.
                 </p>
             </div>
 
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
-                <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center font-bold text-sm">4</div>
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-4 space-y-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center font-bold text-sm">4</div>
                 <h4 class="font-bold text-white text-sm">Review Diff</h4>
                 <p class="text-gray-400 leading-relaxed">
                     Inspect color-coded unified Git diffs showing exact insecure deletions and safe parameterized additions. Click "Apply Fixes" to update the editor.
                 </p>
             </div>
 
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 space-y-2">
-                <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center font-bold text-sm">5</div>
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-4 space-y-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center font-bold text-sm">5</div>
                 <h4 class="font-bold text-white text-sm">Export Report</h4>
                 <p class="text-gray-400 leading-relaxed">
                     Export your full security audit findings as structured Markdown or machine-readable JSON for integration into PR descriptions and security logs.
@@ -478,9 +472,9 @@
     </section>
 
     <!-- Section 2: How Static & AI Security Analysis Works -->
-    <section id="how-it-works" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
+    <section id="how-it-works" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10/80">
         <div class="text-center max-w-3xl mx-auto mb-10">
-            <span class="text-xs font-semibold text-cyan-400 tracking-wider uppercase px-2.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-800">
+            <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-800">
                 Technical Architecture
             </span>
             <h3 class="text-2xl sm:text-3xl font-bold text-white mt-3">How Static AST & AI Security Analysis Works</h3>
@@ -491,8 +485,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Card 1 -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-6 hover:border-cyan-700/50 transition">
-                <div class="w-12 h-12 rounded-lg bg-cyan-950/60 border border-cyan-800/80 text-cyan-400 flex items-center justify-center text-xl mb-4 font-bold">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-6 hover:border-emerald-700/50 transition">
+                <div class="w-12 h-12 rounded-lg bg-emerald-950/60 border border-emerald-800/80 text-emerald-400 flex items-center justify-center text-xl mb-4 font-bold">
                     <i class="fa-solid fa-diagram-project"></i>
                 </div>
                 <h4 class="text-base font-semibold text-white mb-2">1. AST Syntax Parsing</h4>
@@ -500,14 +494,14 @@
                     Rather than relying solely on brittle regex matching, the engine parses source code into an in-memory Abstract Syntax Tree. This allows the scanner to inspect call expressions, function parameters, and variable assignments deterministically without executing untrusted code.
                 </p>
                 <ul class="mt-4 space-y-1.5 text-xs text-gray-300">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> Scope and call-graph inspection</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> Grammar validation per language</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> Context-aware string evaluation</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Scope and call-graph inspection</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Grammar validation per language</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Context-aware string evaluation</li>
                 </ul>
             </div>
 
             <!-- Card 2 -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-6 hover:border-blue-700/50 transition">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-6 hover:border-blue-700/50 transition">
                 <div class="w-12 h-12 rounded-lg bg-blue-950/60 border border-blue-800/80 text-blue-400 flex items-center justify-center text-xl mb-4 font-bold">
                     <i class="fa-solid fa-shield-virus"></i>
                 </div>
@@ -523,7 +517,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-6 hover:border-indigo-700/50 transition">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-6 hover:border-indigo-700/50 transition">
                 <div class="w-12 h-12 rounded-lg bg-indigo-950/60 border border-indigo-800/80 text-indigo-400 flex items-center justify-center text-xl mb-4 font-bold">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
@@ -542,19 +536,19 @@
 
     
     <!-- About Project Section -->
-    <section id="about-project" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
-        <div class="bg-[#111827] border border-gray-800 rounded-xl p-6 md:p-8">
-            <h3 class="text-2xl font-bold text-white mb-6 border-b border-gray-800 pb-2">About Project</h3>
+    <section id="about-project" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10/80">
+        <div class="bg-[#0f172a] border border-white/10 rounded-xl p-6 md:p-8">
+            <h3 class="text-2xl font-bold text-white mb-6 border-b border-white/10 pb-2">About Project</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-300">
                 <div>
-                    <p class="mb-2"><strong class="text-cyan-400">Project Name:</strong> AI Code Reviewer & Security Auditor</p>
-                    <p class="mb-2"><strong class="text-cyan-400">Developed By:</strong> [Your Name Here]</p>
-                    <p class="mb-2"><strong class="text-cyan-400">College/University:</strong> [Your College Name Here]</p>
-                    <p class="mb-2"><strong class="text-cyan-400">Department:</strong> [Your Department Here]</p>
-                    <p class="mb-2"><strong class="text-cyan-400">Project Guide:</strong> [Your Project Guide Name Here]</p>
+                    <p class="mb-2"><strong class="text-emerald-400">Project Name:</strong> AI Code Reviewer & Security Auditor</p>
+                    <p class="mb-2"><strong class="text-emerald-400">Developed By:</strong> [Your Name Here]</p>
+                    <p class="mb-2"><strong class="text-emerald-400">College/University:</strong> [Your College Name Here]</p>
+                    <p class="mb-2"><strong class="text-emerald-400">Department:</strong> [Your Department Here]</p>
+                    <p class="mb-2"><strong class="text-emerald-400">Project Guide:</strong> [Your Project Guide Name Here]</p>
                 </div>
                 <div class="flex items-center md:justify-end">
-                    <a href="https://github.com/yourusername/yourrepo" target="_blank" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center gap-2 transition border border-gray-700">
+                    <a href="https://github.com/yourusername/yourrepo" target="_blank" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center gap-2 transition border border-white/10">
                         <i class="fa-brands fa-github text-lg"></i> View Source Code on GitHub
                     </a>
                 </div>
@@ -562,7 +556,7 @@
         </div>
     </section>
     <!-- Section 3: Common Vulnerabilities Detected -->
-    <section id="vulnerabilities" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
+    <section id="vulnerabilities" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10/80">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
                 <span class="text-xs font-semibold text-rose-400 tracking-wider uppercase px-2.5 py-1 rounded-full bg-rose-950/60 border border-rose-800">
@@ -571,7 +565,7 @@
                 <h3 class="text-2xl sm:text-3xl font-bold text-white mt-2">Vulnerabilities We Audit & Remediate</h3>
                 <p class="text-xs sm:text-sm text-gray-400 mt-1">Benchmarked against MITRE CWE standards and the OWASP Top 10.</p>
             </div>
-            <a href="/learn/owasp-top-10" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1.5">
+            <a href="/learn/owasp-top-10" class="text-xs text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5">
                 <span>Explore Full OWASP Top 10:2025 Guide</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
@@ -579,7 +573,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 text-xs">
             
             <!-- SQLi -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">CWE-89 • CRITICAL</span>
@@ -588,15 +582,15 @@
                     <p class="text-gray-400 mt-1 leading-relaxed">
                         Concatenating raw inputs into query strings allows attackers to manipulate SQL logic, bypass auth, and extract data.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-rose-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-rose-300 overflow-x-auto">
                         <code>f"WHERE id = '{user_id}'"</code>
                     </div>
                 </div>
-                <a href="/learn/sql-injection" class="inline-block mt-3 text-cyan-400 hover:underline">Read SQLi guide &rarr;</a>
+                <a href="/learn/sql-injection" class="inline-block mt-3 text-emerald-400 hover:underline">Read SQLi guide &rarr;</a>
             </div>
 
             <!-- Secrets -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">CWE-798 • CRITICAL</span>
@@ -605,83 +599,83 @@
                     <p class="text-gray-400 mt-1 leading-relaxed">
                         Embedded AWS keys, GitHub tokens, and database passwords committed to repositories invite automated exploitation.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-rose-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-rose-300 overflow-x-auto">
                         <code>AWS_KEY = "AKIAIOSFODNN7..."</code>
                     </div>
                 </div>
-                <a href="/learn/hardcoded-secrets" class="inline-block mt-3 text-cyan-400 hover:underline">Read Secrets guide &rarr;</a>
+                <a href="/learn/hardcoded-secrets" class="inline-block mt-3 text-emerald-400 hover:underline">Read Secrets guide &rarr;</a>
             </div>
 
             <!-- Command Injection -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">CWE-78 • CRITICAL</span>
                     </div>
                     <h4 class="text-sm font-semibold text-white">Command Injection</h4>
                     <p class="text-gray-400 mt-1 leading-relaxed">
-                        Executing system shell commands with user-controlled parameters via <code class="text-cyan-300">shell=True</code> permits Remote Code Execution.
+                        Executing system shell commands with user-controlled parameters via <code class="text-emerald-300">shell=True</code> permits Remote Code Execution.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-rose-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-rose-300 overflow-x-auto">
                         <code>subprocess.run("ping " + host, shell=True)</code>
                     </div>
                 </div>
-                <a href="/learn/command-injection" class="inline-block mt-3 text-cyan-400 hover:underline">Read Command guide &rarr;</a>
+                <a href="/learn/command-injection" class="inline-block mt-3 text-emerald-400 hover:underline">Read Command guide &rarr;</a>
             </div>
 
             <!-- XSS -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">CWE-79 • HIGH</span>
                     </div>
                     <h4 class="text-sm font-semibold text-white">Cross-Site Scripting (XSS)</h4>
                     <p class="text-gray-400 mt-1 leading-relaxed">
-                        Injecting unescaped user payloads into DOM sinks like <code class="text-cyan-300">innerHTML</code> or <code class="text-cyan-300">dangerouslySetInnerHTML</code> enables session theft.
+                        Injecting unescaped user payloads into DOM sinks like <code class="text-emerald-300">innerHTML</code> or <code class="text-emerald-300">dangerouslySetInnerHTML</code> enables session theft.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-amber-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-amber-300 overflow-x-auto">
                         <code>element.innerHTML = userInput</code>
                     </div>
                 </div>
-                <a href="/learn/xss" class="inline-block mt-3 text-cyan-400 hover:underline">Read XSS guide &rarr;</a>
+                <a href="/learn/xss" class="inline-block mt-3 text-emerald-400 hover:underline">Read XSS guide &rarr;</a>
             </div>
 
             <!-- Insecure File Handling / Path Traversal -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">CWE-22 • HIGH</span>
                     </div>
                     <h4 class="text-sm font-semibold text-white">Insecure File Handling</h4>
                     <p class="text-gray-400 mt-1 leading-relaxed">
-                        Failing to validate file paths allows path traversal sequences (<code class="text-cyan-300">../</code>) to access arbitrary filesystem locations.
+                        Failing to validate file paths allows path traversal sequences (<code class="text-emerald-300">../</code>) to access arbitrary filesystem locations.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-amber-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-amber-300 overflow-x-auto">
                         <code>open(UPLOAD_DIR + "/" + filename)</code>
                     </div>
                 </div>
-                <a href="/learn/python-security" class="inline-block mt-3 text-cyan-400 hover:underline">Read File Security &rarr;</a>
+                <a href="/learn/python-security" class="inline-block mt-3 text-emerald-400 hover:underline">Read File Security &rarr;</a>
             </div>
 
             <!-- Insecure Deserialization -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">CWE-502 • HIGH</span>
                     </div>
                     <h4 class="text-sm font-semibold text-white">Insecure Deserialization</h4>
                     <p class="text-gray-400 mt-1 leading-relaxed">
-                        Unpickling untrusted network payloads via <code class="text-cyan-300">pickle.loads()</code> triggers instant arbitrary object instantiation and RCE.
+                        Unpickling untrusted network payloads via <code class="text-emerald-300">pickle.loads()</code> triggers instant arbitrary object instantiation and RCE.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-amber-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-amber-300 overflow-x-auto">
                         <code>obj = pickle.loads(network_bytes)</code>
                     </div>
                 </div>
-                <a href="/learn/python-security" class="inline-block mt-3 text-cyan-400 hover:underline">Read Pickle guide &rarr;</a>
+                <a href="/learn/python-security" class="inline-block mt-3 text-emerald-400 hover:underline">Read Pickle guide &rarr;</a>
             </div>
 
             <!-- Authentication & Session Issues -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">CWE-287 • HIGH</span>
@@ -690,15 +684,15 @@
                     <p class="text-gray-400 mt-1 leading-relaxed">
                         Plaintext credentials in databases, hardcoded mock tokens, or missing session expiration leave endpoints open to impersonation.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-amber-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-amber-300 overflow-x-auto">
                         <code>if token == "dev_admin_token":</code>
                     </div>
                 </div>
-                <a href="/learn/secure-coding" class="inline-block mt-3 text-cyan-400 hover:underline">Read Auth guide &rarr;</a>
+                <a href="/learn/secure-coding" class="inline-block mt-3 text-emerald-400 hover:underline">Read Auth guide &rarr;</a>
             </div>
 
             <!-- Weak Cryptography -->
-            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-5 hover:border-white/10 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-yellow-950 text-yellow-400 border border-yellow-800">CWE-327 • MEDIUM</span>
@@ -707,57 +701,57 @@
                     <p class="text-gray-400 mt-1 leading-relaxed">
                         Relying on deprecated MD5 or SHA-1 hashes for passwords or signatures invites collision attacks and rainbow-table cracking.
                     </p>
-                    <div class="mt-3 p-2 bg-black/40 rounded border border-gray-800 font-mono text-[11px] text-yellow-300 overflow-x-auto">
+                    <div class="mt-3 p-2 bg-black/40 rounded border border-white/10 font-mono text-[11px] text-yellow-300 overflow-x-auto">
                         <code>hashlib.md5(password).hexdigest()</code>
                     </div>
                 </div>
-                <a href="/learn/secure-coding" class="inline-block mt-3 text-cyan-400 hover:underline">Read Crypto guide &rarr;</a>
+                <a href="/learn/secure-coding" class="inline-block mt-3 text-emerald-400 hover:underline">Read Crypto guide &rarr;</a>
             </div>
 
         </div>
     </section>
 
     <!-- Section 4: Supported Languages & Standards -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-gray-800/80">
-        <div class="bg-[#111827] border border-gray-800 rounded-2xl p-6 sm:p-8">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/10/80">
+        <div class="bg-[#0f172a] border border-white/10 rounded-2xl p-6 sm:p-8">
             <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                <i class="fa-solid fa-code-compare text-cyan-400"></i> Supported Programming Languages & Analysis Scope
+                <i class="fa-solid fa-code-compare text-emerald-400"></i> Supported Programming Languages & Analysis Scope
             </h3>
             <p class="text-xs text-gray-400 mb-6">
                 Our static analysis rules and AST parsers are calibrated for multi-language software stacks and aligned with industry security benchmarks:
             </p>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center text-xs">
-                <div class="bg-[#0E1424] border border-gray-800 rounded-lg p-3">
+                <div class="bg-[#0E1424] border border-white/10 rounded-lg p-3">
                     <i class="fa-brands fa-python text-blue-400 text-2xl mb-1.5 block"></i>
                     <span class="font-semibold text-white">Python</span>
                     <span class="block text-[10px] text-gray-400 mt-1">Native AST & Rules</span>
                     <span class="block text-[10px] text-gray-500">Pickle, Subprocess, SQL</span>
                 </div>
-                <div class="bg-[#0E1424] border border-gray-800 rounded-lg p-3">
+                <div class="bg-[#0E1424] border border-white/10 rounded-lg p-3">
                     <i class="fa-brands fa-js text-yellow-400 text-2xl mb-1.5 block"></i>
                     <span class="font-semibold text-white">JavaScript</span>
                     <span class="block text-[10px] text-gray-400 mt-1">Node.js & Browser</span>
                     <span class="block text-[10px] text-gray-500">DOM sinks, Child Process</span>
                 </div>
-                <div class="bg-[#0E1424] border border-gray-800 rounded-lg p-3">
-                    <i class="fa-brands fa-js-square text-cyan-400 text-2xl mb-1.5 block"></i>
+                <div class="bg-[#0E1424] border border-white/10 rounded-lg p-3">
+                    <i class="fa-brands fa-js-square text-emerald-400 text-2xl mb-1.5 block"></i>
                     <span class="font-semibold text-white">TypeScript</span>
                     <span class="block text-[10px] text-gray-400 mt-1">Type Safety & Sinks</span>
                     <span class="block text-[10px] text-gray-500">Any casts, Raw queries</span>
                 </div>
-                <div class="bg-[#0E1424] border border-gray-800 rounded-lg p-3">
+                <div class="bg-[#0E1424] border border-white/10 rounded-lg p-3">
                     <i class="fa-brands fa-java text-rose-400 text-2xl mb-1.5 block"></i>
                     <span class="font-semibold text-white">Java</span>
                     <span class="block text-[10px] text-gray-400 mt-1">Spring & JDBC</span>
                     <span class="block text-[10px] text-gray-500">Prepared statements, Auth</span>
                 </div>
-                <div class="bg-[#0E1424] border border-gray-800 rounded-lg p-3">
+                <div class="bg-[#0E1424] border border-white/10 rounded-lg p-3">
                     <i class="fa-solid fa-c text-purple-400 text-2xl mb-1.5 block"></i>
                     <span class="font-semibold text-white">C / C++</span>
                     <span class="block text-[10px] text-gray-400 mt-1">Memory & Bounds</span>
                     <span class="block text-[10px] text-gray-500">strcpy, gets, buffer safety</span>
                 </div>
-                <div class="bg-[#0E1424] border border-gray-800 rounded-lg p-3">
+                <div class="bg-[#0E1424] border border-white/10 rounded-lg p-3">
                     <i class="fa-brands fa-html5 text-amber-400 text-2xl mb-1.5 block"></i>
                     <span class="font-semibold text-white">HTML / DOM</span>
                     <span class="block text-[10px] text-gray-400 mt-1">Template Safety</span>
@@ -768,8 +762,8 @@
     </section>
 
     <!-- Section 5: Concrete Example Security Analysis (Before & After Walkthrough) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
-        <div class="bg-[#111827] border border-gray-800 rounded-2xl p-6 sm:p-8">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10/80">
+        <div class="bg-[#0f172a] border border-white/10 rounded-2xl p-6 sm:p-8">
             <div class="max-w-3xl mb-6">
                 <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-800">
                     Concrete Case Study
@@ -814,21 +808,21 @@ def fetch_user_profile(user_id):
     conn = sqlite3.connect("app.db")
     cursor = conn.cursor()
     <span class="text-emerald-300">query = "SELECT * FROM users WHERE id = ?"</span>
-    <span class="text-cyan-300">cursor.execute(query, (user_id,))</span>
+    <span class="text-emerald-300">cursor.execute(query, (user_id,))</span>
     <span class="text-gray-500"># Database engine treats payload strictly as literal data</span>
     return cursor.fetchone()</pre>
                 </div>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-gray-800/80 text-xs text-gray-400 leading-relaxed">
-                <strong class="text-white">Analysis Breakdown:</strong> In the vulnerable code, Python evaluates the f-string at runtime before the database engine sees it. If an attacker submits <code class="text-rose-300">' OR '1'='1</code>, the SQL AST syntax tree is modified to return all records. In the remediated code, the query template is compiled first by the database engine, and the <code class="text-cyan-300">(user_id,)</code> tuple is passed over the wire as isolated value data.
+            <div class="mt-4 pt-4 border-t border-white/10/80 text-xs text-gray-400 leading-relaxed">
+                <strong class="text-white">Analysis Breakdown:</strong> In the vulnerable code, Python evaluates the f-string at runtime before the database engine sees it. If an attacker submits <code class="text-rose-300">' OR '1'='1</code>, the SQL AST syntax tree is modified to return all records. In the remediated code, the query template is compiled first by the database engine, and the <code class="text-emerald-300">(user_id,)</code> tuple is passed over the wire as isolated value data.
             </div>
         </div>
     </section>
 
     <!-- Section 6: Limitations of Automated & AI Security Analysis -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-gray-800/80">
-        <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-6 sm:p-7">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/10/80">
+        <div class="bg-gray-900/60 border border-white/10 rounded-xl p-6 sm:p-7">
             <h3 class="text-lg font-bold text-white flex items-center gap-2 mb-3">
                 <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
                 Limitations & Operational Boundaries of Automated Code Security Analysis
@@ -837,19 +831,19 @@ def fetch_user_profile(user_id):
                 While static analysis (SAST) and AI-assisted audits provide an essential early-warning mechanism during development, engineering teams must maintain realistic expectations regarding their theoretical boundaries:
             </p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-gray-400">
-                <div class="bg-black/30 p-3.5 rounded-lg border border-gray-800">
+                <div class="bg-black/30 p-3.5 rounded-lg border border-white/10">
                     <h5 class="text-white font-semibold mb-1 flex items-center gap-1.5">
-                        <i class="fa-solid fa-code-branch text-cyan-400"></i> Business Logic Flaws
+                        <i class="fa-solid fa-code-branch text-emerald-400"></i> Business Logic Flaws
                     </h5>
                     Automated tools evaluate syntax, library invocations, and known exploit signatures. They cannot infer human business rules, such as verifying whether user A is authorized to approve user B's financial transaction.
                 </div>
-                <div class="bg-black/30 p-3.5 rounded-lg border border-gray-800">
+                <div class="bg-black/30 p-3.5 rounded-lg border border-white/10">
                     <h5 class="text-white font-semibold mb-1 flex items-center gap-1.5">
                         <i class="fa-solid fa-network-wired text-blue-400"></i> Dynamic Runtime Context
                     </h5>
                     Static analysis inspects code at rest. Dynamic runtime conditions, distributed container networks, cloud IAM policies, and live database configurations must be validated via DAST and penetration testing.
                 </div>
-                <div class="bg-black/30 p-3.5 rounded-lg border border-gray-800">
+                <div class="bg-black/30 p-3.5 rounded-lg border border-white/10">
                     <h5 class="text-white font-semibold mb-1 flex items-center gap-1.5">
                         <i class="fa-solid fa-user-shield text-emerald-400"></i> Defense in Depth
                     </h5>
@@ -860,14 +854,14 @@ def fetch_user_profile(user_id):
     </section>
 
     <!-- Section 7: Frequently Asked Questions (FAQ) -->
-    <section id="faq" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800/80">
+    <section id="faq" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10/80">
         <div class="text-center mb-8">
             <h3 class="text-2xl font-bold text-white">Frequently Asked Questions</h3>
             <p class="text-xs text-gray-400 mt-1">Detailed answers on data processing, detection rules, scoring algorithms, and privacy.</p>
         </div>
 
         <div class="space-y-3 text-xs">
-            <div class="faq-item bg-[#111827] border border-gray-800 rounded-lg p-4 cursor-pointer">
+            <div class="faq-item bg-[#0f172a] border border-white/10 rounded-lg p-4 cursor-pointer">
                 <h4 class="font-semibold text-white flex items-center justify-between">
                     <span>How is my source code processed and is it saved on your servers?</span>
                     <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] faq-icon transition"></i>
@@ -877,7 +871,7 @@ def fetch_user_profile(user_id):
                 </p>
             </div>
 
-            <div class="faq-item bg-[#111827] border border-gray-800 rounded-lg p-4 cursor-pointer">
+            <div class="faq-item bg-[#0f172a] border border-white/10 rounded-lg p-4 cursor-pointer">
                 <h4 class="font-semibold text-white flex items-center justify-between">
                     <span>How does the Security Health Score calculation work?</span>
                     <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] faq-icon transition"></i>
@@ -887,17 +881,17 @@ def fetch_user_profile(user_id):
                 </p>
             </div>
 
-            <div class="faq-item bg-[#111827] border border-gray-800 rounded-lg p-4 cursor-pointer">
+            <div class="faq-item bg-[#0f172a] border border-white/10 rounded-lg p-4 cursor-pointer">
                 <h4 class="font-semibold text-white flex items-center justify-between">
                     <span>What is the difference between Offline Mode and External AI Mode?</span>
                     <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] faq-icon transition"></i>
                 </h4>
                 <p class="text-gray-400 mt-2 leading-relaxed faq-answer hidden">
-                    By default, the scanner runs in 100% offline mode using our built-in Python AST parser and static heuristic rules without contacting any third party. If you choose to enable external AI (e.g. Google Gemini or OpenAI), your API key is stored strictly within your browser's local storage (<code class="text-cyan-300">localStorage</code>) and used solely to query the designated API endpoint for supplemental natural-language remediation guidance.
+                    By default, the scanner runs in 100% offline mode using our built-in Python AST parser and static heuristic rules without contacting any third party. If you choose to enable external AI (e.g. Google Gemini or OpenAI), your API key is stored strictly within your browser's local storage (<code class="text-emerald-300">localStorage</code>) and used solely to query the designated API endpoint for supplemental natural-language remediation guidance.
                 </p>
             </div>
 
-            <div class="faq-item bg-[#111827] border border-gray-800 rounded-lg p-4 cursor-pointer">
+            <div class="faq-item bg-[#0f172a] border border-white/10 rounded-lg p-4 cursor-pointer">
                 <h4 class="font-semibold text-white flex items-center justify-between">
                     <span>Which programming languages are supported?</span>
                     <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] faq-icon transition"></i>
@@ -907,7 +901,7 @@ def fetch_user_profile(user_id):
                 </p>
             </div>
 
-            <div class="faq-item bg-[#111827] border border-gray-800 rounded-lg p-4 cursor-pointer">
+            <div class="faq-item bg-[#0f172a] border border-white/10 rounded-lg p-4 cursor-pointer">
                 <h4 class="font-semibold text-white flex items-center justify-between">
                     <span>Can this tool detect business logic flaws or authorization bypasses?</span>
                     <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] faq-icon transition"></i>
@@ -917,17 +911,17 @@ def fetch_user_profile(user_id):
                 </p>
             </div>
 
-            <div class="faq-item bg-[#111827] border border-gray-800 rounded-lg p-4 cursor-pointer">
+            <div class="faq-item bg-[#0f172a] border border-white/10 rounded-lg p-4 cursor-pointer">
                 <h4 class="font-semibold text-white flex items-center justify-between">
                     <span>How does the automated 1-click remediation feature work?</span>
                     <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] faq-icon transition"></i>
                 </h4>
                 <p class="text-gray-400 mt-2 leading-relaxed faq-answer hidden">
-                    When vulnerabilities are identified, the rule synthesizer generates safe idiomatic replacements (such as binding query parameters or replacing insecure imports). The backend uses Python's <code class="text-cyan-300">difflib</code> module to produce a unified diff. Clicking "Apply Fixes" immediately injects the remediated code into the editor so you can review or re-scan.
+                    When vulnerabilities are identified, the rule synthesizer generates safe idiomatic replacements (such as binding query parameters or replacing insecure imports). The backend uses Python's <code class="text-emerald-300">difflib</code> module to produce a unified diff. Clicking "Apply Fixes" immediately injects the remediated code into the editor so you can review or re-scan.
                 </p>
             </div>
 
-            <div class="faq-item bg-[#111827] border border-gray-800 rounded-lg p-4 cursor-pointer">
+            <div class="faq-item bg-[#0f172a] border border-white/10 rounded-lg p-4 cursor-pointer">
                 <h4 class="font-semibold text-white flex items-center justify-between">
                     <span>Can this tool replace formal penetration testing or compliance audits?</span>
                     <i class="fa-solid fa-chevron-down text-gray-500 text-[10px] faq-icon transition"></i>
@@ -942,9 +936,9 @@ def fetch_user_profile(user_id):
     <!-- Section 8: Designated High-Value AdSense Container Zone (Google Policy Compliant) -->
     <!-- Served strictly below substantive editorial publisher prose; never on empty editor states -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="bg-[#0e1424]/70 border border-dashed border-gray-700/80 rounded-xl p-4 text-center">
+        <div class="bg-[#0e1424]/70 border border-dashed border-white/10/80 rounded-xl p-4 text-center">
             <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2 font-mono">Sponsored Developer Resources</span>
-            <div class="h-24 bg-gray-900/90 rounded-lg border border-gray-800 flex items-center justify-center text-xs text-gray-500">
+            <div class="h-24 bg-gray-900/90 rounded-lg border border-white/10 flex items-center justify-center text-xs text-gray-500">
                 <ins class="adsbygoogle"
                      style="display:block; text-align:center;"
                      data-ad-layout="in-article"
@@ -959,14 +953,14 @@ def fetch_user_profile(user_id):
     </section>
 
     <!-- Comprehensive 4-Column Footer -->
-    <footer class="border-t border-gray-800 bg-[#0A0D16] mt-auto">
+    <footer class="border-t border-white/10 bg-[#0A0D16] mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-xs">
                 
                 <!-- Col 1: Brand & Overview -->
                 <div class="col-span-2 md:col-span-1 space-y-3">
                     <div class="flex items-center space-x-2">
-                        <div class="w-7 h-7 rounded-lg bg-cyan-600 flex items-center justify-center text-white">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
                             <i class="fa-solid fa-shield-halved text-sm"></i>
                         </div>
                         <span class="font-bold text-sm text-white">AI Code Reviewer</span>
@@ -983,12 +977,12 @@ def fetch_user_profile(user_id):
                 <div>
                     <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Security Guides</h5>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="/learn/sql-injection" class="hover:text-cyan-400 transition">SQL Injection Guide</a></li>
-                        <li><a href="/learn/xss" class="hover:text-cyan-400 transition">Cross-Site Scripting (XSS)</a></li>
-                        <li><a href="/learn/hardcoded-secrets" class="hover:text-cyan-400 transition">Hardcoded Secrets Defense</a></li>
-                        <li><a href="/learn/command-injection" class="hover:text-cyan-400 transition">Command Injection & RCE</a></li>
-                        <li><a href="/learn/owasp-top-10" class="hover:text-cyan-400 transition">OWASP Top 10:2025 Guide</a></li>
-                        <li><a href="/learn/secure-coding" class="hover:text-cyan-400 transition">Secure Coding Principles</a></li>
+                        <li><a href="/learn/sql-injection" class="hover:text-emerald-400 transition">SQL Injection Guide</a></li>
+                        <li><a href="/learn/xss" class="hover:text-emerald-400 transition">Cross-Site Scripting (XSS)</a></li>
+                        <li><a href="/learn/hardcoded-secrets" class="hover:text-emerald-400 transition">Hardcoded Secrets Defense</a></li>
+                        <li><a href="/learn/command-injection" class="hover:text-emerald-400 transition">Command Injection & RCE</a></li>
+                        <li><a href="/learn/owasp-top-10" class="hover:text-emerald-400 transition">OWASP Top 10:2025 Guide</a></li>
+                        <li><a href="/learn/secure-coding" class="hover:text-emerald-400 transition">Secure Coding Principles</a></li>
                     </ul>
                 </div>
 
@@ -996,11 +990,11 @@ def fetch_user_profile(user_id):
                 <div>
                     <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Language Coverage</h5>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="/learn/python-security" class="hover:text-cyan-400 transition">Python Security Best Practices</a></li>
-                        <li><a href="/learn/javascript-security" class="hover:text-cyan-400 transition">JavaScript & Node.js Audits</a></li>
-                        <li><a href="#how-it-works" class="hover:text-cyan-400 transition">TypeScript Type Vulnerabilities</a></li>
-                        <li><a href="#how-it-works" class="hover:text-cyan-400 transition">Java Spring Security Checks</a></li>
-                        <li><a href="#how-it-works" class="hover:text-cyan-400 transition">C / C++ Memory Bounds Safety</a></li>
+                        <li><a href="/learn/python-security" class="hover:text-emerald-400 transition">Python Security Best Practices</a></li>
+                        <li><a href="/learn/javascript-security" class="hover:text-emerald-400 transition">JavaScript & Node.js Audits</a></li>
+                        <li><a href="#how-it-works" class="hover:text-emerald-400 transition">TypeScript Type Vulnerabilities</a></li>
+                        <li><a href="#how-it-works" class="hover:text-emerald-400 transition">Java Spring Security Checks</a></li>
+                        <li><a href="#how-it-works" class="hover:text-emerald-400 transition">C / C++ Memory Bounds Safety</a></li>
                     </ul>
                 </div>
 
@@ -1008,22 +1002,22 @@ def fetch_user_profile(user_id):
                 <div>
                     <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Trust & Legal</h5>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="/about" class="hover:text-cyan-400 transition">About Our Technology</a></li>
-                        <li><a href="/privacy" class="hover:text-cyan-400 transition">Privacy Policy</a></li>
-                        <li><a href="/terms" class="hover:text-cyan-400 transition">Terms of Service</a></li>
-                        <li><a href="/security-disclaimer" class="hover:text-cyan-400 transition">Security & Ethical Disclaimer</a></li>
-                        <li><a href="/contact" class="hover:text-cyan-400 transition">Contact & Disclosure (VDP)</a></li>
+                        <li><a href="/about" class="hover:text-emerald-400 transition">About Our Technology</a></li>
+                        <li><a href="/privacy" class="hover:text-emerald-400 transition">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-emerald-400 transition">Terms of Service</a></li>
+                        <li><a href="/security-disclaimer" class="hover:text-emerald-400 transition">Security & Ethical Disclaimer</a></li>
+                        <li><a href="/contact" class="hover:text-emerald-400 transition">Contact & Disclosure (VDP)</a></li>
                     </ul>
                 </div>
 
             </div>
 
-            <div class="border-t border-gray-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
+            <div class="border-t border-white/10/80 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
                 <div>
                     &copy; 2026 AI Code Reviewer & Security Auditor. All rights reserved.
                 </div>
                 <div class="flex items-center space-x-4">
-                    <span class="text-cyan-400 flex items-center gap-1.5"><i class="fa-solid fa-shield-halved"></i> Privacy-Conscious Architecture</span>
+                    <span class="text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-shield-halved"></i> Privacy-Conscious Architecture</span>
                     <span>•</span>
                     <span>In-Memory Processing</span>
                 </div>
